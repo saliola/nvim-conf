@@ -6,6 +6,7 @@ My config for neovim
 
 Clone the repo to `~/.config/nvim` and install the following:
 ```
+brew install nvim
 brew install fd
 brew install ripgrep
 brew install stylua
