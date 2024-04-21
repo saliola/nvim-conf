@@ -31,7 +31,6 @@ vim.cmd("set relativenumber")
 -- undo
 vim.cmd("set undofile")
 vim.cmd("set undoreload=10000")
-vim.cmd("set undodir=~/.config/nvim/undo/")
 vim.keymap.set("n", "U", "<c-r>", opts)
 
 -- searching
