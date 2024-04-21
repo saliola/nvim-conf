@@ -1,0 +1,42 @@
+{
+    "align* environment": {
+        "prefix": ["al*"],
+        "body": [
+            "\\begin{align*}",
+            "\t$1",
+            "\\end{align*}$0"
+        ],
+        "description": "Create an align* environment."
+    },
+    "equation* environment": {
+        "prefix": ["eq*"],
+        "body": [
+            "\\begin{equation*}",
+            "\t$1",
+            "\\end{equation*}$0"
+        ],
+        "description": "Create an equation* environment."
+    },
+    "itemize environment": {
+        "prefix": ["eq*"],
+        "body": [
+            "\\begin{itemize}",
+            "\t\item",
+            "\t\t$1",
+            "\\end{itemize}$0"
+        ],
+        "description": "Create an itemize environment."
+    },
+    "solution environment": {
+        "prefix": ["soln"],
+        "body": [
+            "\\begin{solution}",
+            "\t\\begin{itemize}",
+            "\t\t\item",
+            "\t\t\t$1",
+            "\t\\end{itemize}",
+            "\end{solution}$0"
+        ],
+        "description": "Create a solution environment."
+    }
+}
