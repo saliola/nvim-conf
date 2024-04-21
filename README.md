@@ -6,10 +6,10 @@ My config for neovim
 
 Clone the repo to `~/.config/nvim` and install the following:
 ```
-brew install ripgrep
 brew install fd
-brew install texlab
+brew install ripgrep
 brew install stylua
+brew install texlab
 ```
 
 ## ubuntu
