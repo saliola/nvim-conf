@@ -14,7 +14,25 @@ brew install texlab
 
 ## ubuntu
 
-(coming soon)
+Clone the repo to `~/.config/nvim`.
+
+Install the following with apt:
+```
+sudo apt install fd-find
+sudo apt install ripgrep
+```
+
+Install `texlab` by downloading the precompiled binary:
+```
+https://github.com/latex-lsp/texlab/releases
+```
+
+Install `tree-sitter` by downloading the precompiled binary:
+```
+https://github.com/tree-sitter/tree-sitter/releases/
+```
+I haven't looked into installing `stylua` yet.
+
 
 ## references
 
