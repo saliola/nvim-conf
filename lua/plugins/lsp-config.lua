@@ -11,7 +11,11 @@ return {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "texlab" },
+                ensure_installed = {
+                    "lua_ls",
+                    "texlab",
+                    "pyright",
+                },
             })
         end,
     },
@@ -40,6 +44,11 @@ return {
                         },
                     },
                 },
+            })
+
+            lspconfig.pyright.setup({
+                capabilities = capabilities,
+                filetypes = {"python"},
             })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
