@@ -20,17 +20,12 @@ Install the following with apt:
 ```
 sudo apt install fd-find
 sudo apt install ripgrep
+sudo apt install tree-sitter-cli
+sudo apt install nodejs
+sudo apt install npm
+sudo apt install python3-venv
 ```
 
-Install `texlab` by downloading the precompiled binary:
-```
-https://github.com/latex-lsp/texlab/releases
-```
-
-Install `tree-sitter` by downloading the precompiled binary:
-```
-https://github.com/tree-sitter/tree-sitter/releases/
-```
 I haven't looked into installing `stylua` yet.
 
 
