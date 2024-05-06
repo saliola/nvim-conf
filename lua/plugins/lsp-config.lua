@@ -21,6 +21,22 @@ return {
     },
 
     {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        config = function()
+            require("mason-tool-installer").setup({
+                ensure_installed = {
+                    "black",
+                    "debugpy",
+                    "flake8",
+                    "isort",
+                    "mypy",
+                    "pylint",
+                },
+            })
+        end,
+    },
+
+    {
         "neovim/nvim-lspconfig",
         lazy = false,
         config = function()
