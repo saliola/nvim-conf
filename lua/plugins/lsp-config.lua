@@ -14,6 +14,7 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "texlab",
+                    "ruff_lsp",
                     "pyright",
                 },
             })
@@ -26,11 +27,7 @@ return {
             require("mason-tool-installer").setup({
                 ensure_installed = {
                     "black",
-                    "debugpy",
-                    "flake8",
                     "isort",
-                    "mypy",
-                    "pylint",
                 },
             })
         end,
@@ -65,6 +62,16 @@ return {
             lspconfig.pyright.setup({
                 capabilities = capabilities,
                 filetypes = {"python"},
+            })
+
+            lspconfig.ruff_lsp.setup({
+                capabilities = capabilities,
+                filetypes = {"python"},
+                init_options = {
+                    settings = {
+                        args = {'--preview', '--select', 'E,F'},
+                    },
+                },
             })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
