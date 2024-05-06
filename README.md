@@ -32,6 +32,7 @@ I haven't looked into installing `stylua` yet.
 ## references
 
 I followed this [video series](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn)
+and this [video guide](https://www.youtube.com/watch?v=6pAG3BHurdM)
 
 ## notes
 
