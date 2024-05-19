@@ -41,23 +41,14 @@ return {
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
             local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities
+
+            lspconfig.bashls.setup({
+                capabilities = capabilities,
+                filetypes = {"bash"},
             })
 
-            lspconfig.texlab.setup({
-                capabilities = capabilities,
-                flags = {
-                    debounce_text_changes = 150,
-                },
-                settings = {
-                    texlab = {
-                        chktex = {
-                            onEdit = true,
-                            onOpenAndSave = true,
-                        },
-                    },
-                },
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities
             })
 
             lspconfig.pyright.setup({
@@ -71,6 +62,21 @@ return {
                 init_options = {
                     settings = {
                         args = {'--preview', '--select', 'E,F'},
+                    },
+                },
+            })
+
+            lspconfig.texlab.setup({
+                capabilities = capabilities,
+                flags = {
+                    debounce_text_changes = 150,
+                },
+                settings = {
+                    texlab = {
+                        chktex = {
+                            onEdit = true,
+                            onOpenAndSave = true,
+                        },
                     },
                 },
             })
