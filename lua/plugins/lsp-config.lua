@@ -12,10 +12,11 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
+                    "bash_ls",
                     "lua_ls",
-                    "texlab",
-                    "ruff_lsp",
                     "pyright",
+                    "ruff_lsp",
+                    "texlab",
                 },
             })
         end,
