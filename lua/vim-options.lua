@@ -39,13 +39,6 @@ vim.cmd("set incsearch")
 vim.cmd("set ignorecase")
 vim.cmd("set smartcase")
 
--- yank / paste
-vim.keymap.set("n", "<leader>y", '"+yg_', opts) -- yank line to clipboard
-vim.keymap.set("v", "<leader>y", '"+y', opts) -- yank visual selection to clipboard
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', opts) -- paste from clipboard using p
-vim.keymap.set({ "n", "v" }, "<leader>P", '"+P', opts) -- paste from clipboard using P
-vim.cmd([[nnoremap <expr> gV '`[' . getregtype()[0] . '`]']]) -- select most recently changed/pasted text
-
 -- windows & tabs
 vim.keymap.set("n", "<C-W>|", "<C-W>v")
 vim.keymap.set("n", "<C-W>-", "<C-W>s")
