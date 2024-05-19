@@ -12,7 +12,7 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "bash_ls",
+                    "bashls",
                     "lua_ls",
                     "pyright",
                     "ruff_lsp",
