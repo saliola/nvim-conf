@@ -92,3 +92,10 @@ vim.cmd([[
         diffthis
     endfunction
 ]])
+
+-- configure vim.diagnostics
+local diagnostics = {
+    virtual_text = false,
+    float = { border = "rounded" },
+}
+vim.diagnostic.config(diagnostics)
