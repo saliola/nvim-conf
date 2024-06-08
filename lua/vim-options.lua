@@ -1,5 +1,8 @@
 local opts = { noremap = true, silent = true }
 
+-- appearance
+vim.cmd("set termguicolors")
+
 -- general editing
 vim.cmd("set encoding=utf-8")
 vim.cmd("set nojoinspaces") -- only put one space after periods
@@ -48,6 +51,10 @@ local diagnostics = {
     float = { border = "rounded" },
 }
 vim.diagnostic.config(diagnostics)
+local hl_groups = { 'DiagnosticUnderlineError' }
+for _, hl in ipairs(hl_groups) do
+  vim.cmd.highlight(hl .. ' gui=undercurl')
+end
 
 -- Make sure Vim returns to the same line when you reopen a file.
 -- Thanks, Steve Losh https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc
