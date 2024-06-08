@@ -1,10 +1,11 @@
--- enable folding
-vim.opt.foldcolumn = "0"
+-- enable folding & tweak appearance
+vim.opt.foldcolumn = "1"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 0
 vim.opt.foldmethod = "expr"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 1
 vim.opt.foldtext = ""
+vim.cmd([[highlight Folded guibg=#202020]])
 
 -- customize Python folding
 local query = require("vim.treesitter.query")
@@ -21,7 +22,6 @@ query.set("python", "folds", [[
 ]])
 
 -- disable Lua folding
-local query = require("vim.treesitter.query")
 query.set("lua", "folds", [[]])
 
 -- keybindings for folding
