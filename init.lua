@@ -22,3 +22,4 @@ require("lazy").setup("plugins", {
 
 require("vim-options")
 require("folding")
+require("tools")
