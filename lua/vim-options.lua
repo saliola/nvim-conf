@@ -50,13 +50,6 @@ vim.keymap.set("n", "<leader>ta", ":tabnew +Alpha<CR>", {})
 vim.cmd([[cmap <C-P> <C-R>=escape(expand("%:p:h"),' ') . "/"<CR>]]) -- insert current path
 vim.cmd([[cmap %% <C-R>=escape(expand("%"),' ')<CR>]]) -- insert current filename
 
--- folds
-vim.keymap.set("n", "<leader><space>", "za", opts) -- toggle fold
-vim.cmd([[nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"]]) -- skip over closed folds with { and }
-vim.cmd([[nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"]])
-
-
-
 -- join an entire paragraph (Source: Steve Losh)
 vim.keymap.set("n", "<leader>J", "mzvipJ`z", opts)
 
