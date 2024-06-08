@@ -29,6 +29,7 @@ vim.cmd("set hlsearch")
 vim.cmd("set incsearch")
 vim.cmd("set ignorecase")
 vim.cmd("set smartcase")
+vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>", opts)
 
 -- windows & tabs
 vim.keymap.set("n", "<C-W>|", "<C-W>v")
@@ -40,6 +41,13 @@ vim.keymap.set("n", "<leader>ta", ":tabnew +Alpha<CR>", {})
 -- command line mode
 vim.cmd([[cmap <C-P> <C-R>=escape(expand("%:p:h"),' ') . "/"<CR>]]) -- insert current path
 vim.cmd([[cmap %% <C-R>=escape(expand("%"),' ')<CR>]]) -- insert current filename
+
+-- configure vim.diagnostics
+local diagnostics = {
+    virtual_text = false,
+    float = { border = "rounded" },
+}
+vim.diagnostic.config(diagnostics)
 
 -- join an entire paragraph (Source: Steve Losh)
 vim.keymap.set("n", "<leader>J", "mzvipJ`z", opts)
@@ -77,9 +85,15 @@ vim.cmd([[
     endfunction
 ]])
 
--- configure vim.diagnostics
-local diagnostics = {
-    virtual_text = false,
-    float = { border = "rounded" },
-}
-vim.diagnostic.config(diagnostics)
+-- Make sure Vim returns to the same line when you reopen a file.
+-- Thanks, Steve Losh https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc
+vim.cmd([[
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+]])
+
