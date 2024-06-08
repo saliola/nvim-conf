@@ -1,14 +1,5 @@
 local opts = { noremap = true, silent = true }
 
--- leader and localleader
--- leader is set to <space>
--- localleader to q (first q is disabled for recording macros)
--- <leader>q for recording macrots
-vim.g.mapleader = " "
-vim.keymap.set("n", "q", "<Nop>", opts)
-vim.g.maplocalleader = "q"
-vim.keymap.set("n", "<leader>q", "q", opts)
-
 -- general editing
 vim.cmd("set encoding=utf-8")
 vim.cmd("set nojoinspaces") -- only put one space after periods
