@@ -1,10 +1,12 @@
-local diagnostics = {
+vim.diagnostic.config({
     virtual_text = false,
-    float = { border = "rounded" },
-}
+    float = {
+        border = "rounded",
+        source = "always",
+    },
+})
 
-vim.diagnostic.config(diagnostics)
 local hl_groups = { 'DiagnosticUnderlineError' }
 for _, hl in ipairs(hl_groups) do
-  vim.cmd.highlight(hl .. ' gui=undercurl')
+    vim.cmd.highlight(hl .. ' gui=undercurl')
 end
