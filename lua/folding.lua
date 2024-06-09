@@ -1,3 +1,5 @@
+local opts = { noremap = true, silent = true }
+
 -- enable folding & tweak appearance
 vim.opt.foldcolumn = "0"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
