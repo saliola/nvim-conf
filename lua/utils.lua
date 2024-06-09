@@ -1,7 +1,5 @@
-local opts = { noremap = true, silent = true }
-
 -- Join an entire paragraph (Source: Steve Losh)
-vim.keymap.set("n", "<leader>J", "mzvipJ`z", opts)
+vim.keymap.set("n", "<leader>J", "mzvipJ`z", keymap_opts)
 
 -- RedCursorLine
 vim.cmd([[

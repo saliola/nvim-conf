@@ -1,5 +1,3 @@
-local opts = { noremap = true, silent = true }
-
 -- appearance
 vim.cmd("set termguicolors")
 
@@ -25,14 +23,14 @@ vim.cmd("set relativenumber")
 -- undo
 vim.cmd("set undofile")
 vim.cmd("set undoreload=10000")
-vim.keymap.set("n", "U", "<c-r>", opts)
+vim.keymap.set("n", "U", "<c-r>", keymap_opts)
 
 -- searching
 vim.cmd("set hlsearch")
 vim.cmd("set incsearch")
 vim.cmd("set ignorecase")
 vim.cmd("set smartcase")
-vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>", opts)
+vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>", keymap_opts)
 
 -- windows & tabs
 vim.keymap.set("n", "<C-W>|", "<C-W>v")
@@ -44,17 +42,6 @@ vim.keymap.set("n", "<leader>ta", ":tabnew +Alpha<CR>", {})
 -- command line mode
 vim.cmd([[cmap <C-P> <C-R>=escape(expand("%:p:h"),' ') . "/"<CR>]]) -- insert current path
 vim.cmd([[cmap %% <C-R>=escape(expand("%"),' ')<CR>]]) -- insert current filename
-
--- configure vim.diagnostics
-local diagnostics = {
-    virtual_text = false,
-    float = { border = "rounded" },
-}
-vim.diagnostic.config(diagnostics)
-local hl_groups = { 'DiagnosticUnderlineError' }
-for _, hl in ipairs(hl_groups) do
-  vim.cmd.highlight(hl .. ' gui=undercurl')
-end
 
 -- Make sure Vim returns to the same line when you reopen a file.
 -- Thanks, Steve Losh https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc
