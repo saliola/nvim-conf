@@ -13,7 +13,7 @@ return {
                 return virt_text
             end
             )
-            opts = {
+            local opts = {
                 indent = {
                     char = "▏",
                 },
