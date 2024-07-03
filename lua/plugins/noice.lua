@@ -23,8 +23,30 @@ return {
                 command_palette = true, -- position the cmdline and popupmenu together
                 long_message_to_split = true, -- long messages will be sent to a split
                 inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = false, -- add a border to hover docs and signature help
+                lsp_doc_border = true, -- add a border to hover docs and signature help
+            },
+            -- skip search_count messages instead of showing them as virtual text
+            routes = {
+                {
+                    filter = { event = "msg_show", kind = "search_count" },
+                    opts = { skip = true },
+                },
             },
         })
+
+        -- scrolling in the hover doc
+        vim.keymap.set({ "n", "i", "s" }, "<c-f>", function()
+            if not require("noice.lsp").scroll(4) then
+                return "<c-f>"
+            end
+        end, { silent = true, expr = true })
+
+        vim.keymap.set({ "n", "i", "s" }, "<c-d>", function()
+            if not require("noice.lsp").scroll(-4) then
+                return "<c-d>"
+            end
+        end, { silent = true, expr = true })
+
+
     end
 }
