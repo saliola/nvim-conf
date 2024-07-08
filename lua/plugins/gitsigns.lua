@@ -1,8 +1,28 @@
 return {
     "lewis6991/gitsigns.nvim",
     config = function()
-        require("gitsigns").setup()
-        -- vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
-        -- vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", {})
+        require("gitsigns").setup({
+            on_attach = function()
+                local gitsigns = require('gitsigns')
+
+                -- Navigation
+                vim.keymap.set('n', ']c', function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ ']c', bang = true })
+                    else
+                        gitsigns.nav_hunk('next')
+                    end
+                end)
+
+                vim.keymap.set('n', '[c', function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ '[c', bang = true })
+                    else
+                        gitsigns.nav_hunk('prev')
+                    end
+                end)
+
+            end,
+        })
     end,
 }
