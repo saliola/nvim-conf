@@ -9,6 +9,16 @@
         "description": "Create an align* environment."
     },
 
+    "begin environment": {
+        "prefix": ["begin"],
+        "body": [
+            "\\begin{$1}",
+            "\t$2",
+            "\\end{$1}$0"
+        ],
+        "description": "Create an equation* environment."
+    },
+
     "equation* environment": {
         "prefix": ["eq*"],
         "body": [

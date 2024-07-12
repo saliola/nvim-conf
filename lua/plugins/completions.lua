@@ -71,13 +71,13 @@ return {
                     documentation = cmp.config.window.bordered(),
                 },
                 mapping = cmp.mapping.preset.insert({
-                    ['<CR>'] = cmp.mapping.confirm({ select = false })
+                    ['<CR>'] = cmp.mapping.confirm({ select = true })
                 }),
                 sources = cmp.config.sources({
+                    { name = "snippets" },
                     { name = "buffer" },
                     { name = "path" },
                     { name = "nvim_lsp" },
-                    { name = "snippets" },
                 }),
             })
         end,
