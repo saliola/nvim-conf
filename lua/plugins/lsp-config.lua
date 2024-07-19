@@ -54,6 +54,17 @@ return {
             lspconfig.pyright.setup({
                 capabilities = capabilities,
                 filetypes = {"python"},
+                settings = {
+                    python = {
+                        pythonPath = "$HOME/Applications/sage/local/var/lib/sage/venv-python3.12/bin/python",
+                        analysis = {
+                            diagnosticSeverityOverrides = {
+                                reportFunctionMemberAccess = "information",
+                                reportCallIssue = "information",
+                            },
+                        },
+                    },
+                },
             })
 
             lspconfig.ruff_lsp.setup({
@@ -61,7 +72,19 @@ return {
                 filetypes = {"python"},
                 init_options = {
                     settings = {
-                        args = {'--preview', '--select', 'E,F'},
+                        -- extra CLI arguments
+                        -- https://docs.astral.sh/ruff/configuration/#command-line-interface
+                        -- https://docs.astral.sh/ruff/rules/
+                        args = {
+                            '--preview',
+                            '--select', 'E,F',
+                            "--ignore", table.concat({
+                                "E501", -- line-too-long
+                                "E702", -- multiple-statements-on-one-line-semicolon
+                                "E731", -- lambda-assignment
+                                "F401", -- unused-import  (note: should be handled by pyright as 'hint')
+                            }, ','),
+                        },
                     },
                 },
             })
