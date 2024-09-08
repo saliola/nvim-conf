@@ -70,9 +70,6 @@ return {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
-                mapping = cmp.mapping.preset.insert({
-                    ['<CR>'] = cmp.mapping.confirm({ select = true })
-                }),
                 sources = cmp.config.sources({
                     { name = "snippets" },
                     { name = "buffer" },
