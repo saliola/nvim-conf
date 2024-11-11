@@ -14,8 +14,8 @@ return {
                 ensure_installed = {
                     "bashls",
                     "lua_ls",
-                    "pyright",
-                    "ruff_lsp",
+                    "basedpyright",
+                    "ruff",
                     "texlab",
                 },
             })
@@ -67,7 +67,7 @@ return {
                 },
             })
 
-            lspconfig.ruff_lsp.setup({
+            lspconfig.ruff.setup({
                 capabilities = capabilities,
                 filetypes = {"python"},
                 init_options = {
