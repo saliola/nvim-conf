@@ -6,7 +6,8 @@ return {
             local configs = require("nvim-treesitter.configs")
             configs.setup({
                 highlight = {
-                    enable = true
+                    enable = true,
+                    additional_vim_regex_highlighting = { "latex", "markdown" },
                 },
                 indent = {
                     enable = true
