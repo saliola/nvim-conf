@@ -1,5 +1,8 @@
 return {
     {
+        "github/copilot.vim"
+    },
+    {
         "garymjr/nvim-snippets",
         keys = {
             {
@@ -70,6 +73,10 @@ return {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+                }),
                 sources = cmp.config.sources({
                     { name = "snippets" },
                     { name = "buffer" },
