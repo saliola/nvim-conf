@@ -15,8 +15,4 @@ return {
             }
         end,
     },
-
-    {
-        "frabjous/knap"
-    }
 }
