@@ -1,0 +1,3 @@
+return {
+    "saliola/accentuate.nvim"
+}
