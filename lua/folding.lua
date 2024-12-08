@@ -5,7 +5,7 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 1
 vim.opt.foldtext = ""
-vim.cmd([[highlight Folded guibg=NONE guifg=#555555]])
+vim.cmd([[highlight Folded guibg=#222233 guifg=#555555]])
 
 -- customize Python folding
 local query = require("vim.treesitter.query")
