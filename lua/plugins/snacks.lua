@@ -11,14 +11,32 @@ return {
                 { section = "keys", gap = 1, padding = 1 },
                 { section = "startup" },
             },
-            notifier = {
-                enabled = true,
-                timeout = 3000,
+        },
+        lazygit = {
+            enabled = true,
+        },
+        notifier = {
+            enabled = true,
+            timeout = 3000,
+        },
+        quickfile = { enabled = true },
+        statuscolumn = {
+            enabled = true,
+            folds = {
+                open = true,
             },
+        },
+        words = {
+            enabled = true,
+            timeout = 3000,
         },
     },
     keys = {
-        { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
-        { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+        { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+        { "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+        { "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit (cwd)" },
+        { "<leader>ll", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
+        { ']]', function() Snacks.words.jump( vim.v.count1, true) end, desc = 'Next LSP highlight' },
+        { '[[', function() Snacks.words.jump(-vim.v.count1, true) end, desc = 'Prev LSP highlight' },
     }
 }
