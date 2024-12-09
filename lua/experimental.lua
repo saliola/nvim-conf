@@ -17,6 +17,8 @@ function copy_sage_output(output_only)
 end
 
 function copy_paste_sage_output(output_only)
-    copy_paste_sage_output(output_only)
+    copy_sage_output(output_only)
     vim.cmd("Tput")
 end
+
+vim.keymap.set("n", "<leader>sc", copy_paste_sage_output)
