@@ -7,9 +7,51 @@ return {
         dashboard = {
             enabled = true,
             sections = {
-                { section = "header" },
-                { section = "keys", gap = 1, padding = 1 },
-                { section = "startup" },
+                {
+                    pane = 1,
+                    section = "terminal",
+                    cmd = "colorscript -e crunchbang-mini",
+                    width = 50,
+                    height = 5,
+                    padding = 0,
+                    indent = 6,
+                },
+                {
+                    section = "startup",
+                    padding = 1
+                },
+                {
+                    section = "keys",
+                    gap = 0,
+                    padding = 1
+                },
+                {
+                    title = "Recent Files",
+                    section = "recent_files",
+                    icon = " ",
+                    indent = 2,
+                    padding = 1
+                },
+                {
+                    title = "Projects",
+                    section = "projects",
+                    icon = " ",
+                    indent = 2,
+                    padding = 1
+                },
+                {
+                    title = "Git Status",
+                    section = "terminal",
+                    icon = " ",
+                    enabled = function()
+                        return Snacks.git.get_root() ~= nil
+                    end,
+                    cmd = "hub status --short --branch --renames",
+                    height = 5,
+                    padding = 0,
+                    ttl = 5 * 60,
+                    indent = 3,
+                },
             },
         },
         lazygit = {
