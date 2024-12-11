@@ -17,9 +17,11 @@ return {
                 goto_top = '[i',
                 goto_bottom = ']i',
             },
+            draw = {
+                animation = function()
+                    return 0
+                end
+            }
         }
-        -- config = function()
-        --     require('mini.indentscope').setup()
-        -- end,
     },
 }
