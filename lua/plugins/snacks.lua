@@ -62,6 +62,9 @@ return {
             timeout = 3000,
         },
         quickfile = { enabled = true },
+        scroll = {
+            enabled = true,
+        },
         statuscolumn = {
             enabled = true,
             folds = {
