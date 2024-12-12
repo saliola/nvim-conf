@@ -2,8 +2,6 @@ return {
     {
         'echasnovski/mini.nvim',
         config = function()
-            require('mini.surround').setup()
-
             require('mini.indentscope').setup({
                 symbol = "▏",
                 mappings = {
@@ -18,6 +16,8 @@ return {
                     end
                 }
             })
+
+            require('mini.surround').setup()
 
             require('mini.tabline').setup()
         end,
