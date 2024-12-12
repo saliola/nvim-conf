@@ -46,6 +46,10 @@ vim.keymap.set("n", "<leader>ta", ":tabnew +Alpha<CR>", {})
 vim.cmd([[cmap <C-P> <C-R>=escape(expand("%:p:h"),' ') . "/"<CR>]]) -- insert current path
 vim.cmd([[cmap %% <C-R>=escape(expand("%"),' ')<CR>]]) -- insert current filename
 
+-- commenting
+vim.keymap.set("n", "<leader>cc", "gcc", { remap = true })
+vim.keymap.set("x", "<leader>cc", "gc", { remap = true })
+
 -- Make sure Vim returns to the same line when you reopen a file.
 -- Thanks, Steve Losh https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc
 vim.cmd([[
