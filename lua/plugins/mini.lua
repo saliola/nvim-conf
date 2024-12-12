@@ -1,27 +1,25 @@
 return {
     {
-        'echasnovski/mini.surround',
-        version = false,
+        'echasnovski/mini.nvim',
         config = function()
             require('mini.surround').setup()
+
+            require('mini.indentscope').setup({
+                symbol = "▏",
+                mappings = {
+                    object_scope = "ii",
+                    object_scope_with_border = "ai",
+                    goto_top = '[i',
+                    goto_bottom = ']i',
+                },
+                draw = {
+                    animation = function()
+                        return 0
+                    end
+                }
+            })
+
+            require('mini.tabline').setup()
         end,
-    },
-    {
-        'echasnovski/mini.indentscope',
-        version = false,
-        opts = {
-            symbol = "▏",
-            mappings = {
-                object_scope = "ii",
-                object_scope_with_border = "ai",
-                goto_top = '[i',
-                goto_bottom = ']i',
-            },
-            draw = {
-                animation = function()
-                    return 0
-                end
-            }
-        }
     },
 }
