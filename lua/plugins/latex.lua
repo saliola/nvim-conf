@@ -13,6 +13,9 @@ return {
                 },
                 out_dir = '/tmp/latex-output-directory',
             }
+
+            vim.g.vimtex_mappings_enabled = 1
+            vim.g.vimtex_motion_enabled = 0
         end,
     },
 }
