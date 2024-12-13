@@ -12,7 +12,7 @@ return {
                     else
                         gitsigns.nav_hunk('next')
                     end
-                end)
+                end, { desc = 'Next change (hunk)' })
 
                 vim.keymap.set('n', '[c', function()
                     if vim.wo.diff then
@@ -20,8 +20,7 @@ return {
                     else
                         gitsigns.nav_hunk('prev')
                     end
-                end)
-
+                end, { desc = 'Previous change (hunk)' })
             end,
         })
     end,
