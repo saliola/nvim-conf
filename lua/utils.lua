@@ -33,3 +33,7 @@ vim.cmd([[
         diffthis
     endfunction
 ]])
+
+-- move line up/down respecting indent (inspired by ]e and [e in vim-unimpaired)
+vim.keymap.set("n", "]e", ":m .+1<CR>==", { noremap = true, silent = true })
+vim.keymap.set("n", "[e", ":m .-2<CR>==", { noremap = true, silent = true })
