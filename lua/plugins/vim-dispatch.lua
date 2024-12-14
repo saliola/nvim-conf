@@ -1,9 +1,7 @@
 return {
     "tpope/vim-dispatch",
-    config = function()
+    init = function()
+        vim.g.dispatch_no_maps = 1
         vim.keymap.set("n", "<leader>d", ":Dispatch<CR>", {})
-        vim.keymap.set("n", "<leader>D", ":Dispatch!<CR>", {})
-        vim.keymap.set("n", "<leader>m", ":Make<CR>", {})
-        vim.keymap.set("n", "<leader>M", ":Make!<CR>", {})
     end,
 }

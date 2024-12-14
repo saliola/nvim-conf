@@ -32,13 +32,3 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
         vim.opt.foldlevelstart = 99
     end
 })
-
--- keybindings for folding
-vim.keymap.set("n", "<leader><space>", "za", keymap_opts) -- toggle fold
-vim.cmd([[nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"]]) -- skip over closed folds with { and }
-vim.cmd([[nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"]])
-
--- "Focus" the current line: close all folds; open just the folds containing
--- the current line; move the line a few lines above the center of the screen.
--- From Steve Losh.
-vim.keymap.set("n", "<leader>zf", "mzzMzvzz10<c-e>`z", keymap_opts)

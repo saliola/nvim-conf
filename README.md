@@ -29,7 +29,6 @@ sudo apt install python3-venv
 
 I haven't looked into installing `stylua` yet.
 
-
 ## references
 
 Some very nice references:
@@ -39,11 +38,9 @@ Some very nice references:
 
 ## notes
 
-### neo-tree
-
-Some default keybindings
-
-- `a` -- add a file / directory
-- `H` -- toggle showing of hidden files
-- `s` -- open file with | split
-- `S` -- open file with - split
+- `]c` -- Next **c**hange (hunk)
+- `]d` -- Go to next **d**iagnostic
+- `]e` -- Move line down
+- `]q` -- Next **q**uickfix entry
+- `]s` -- Next mis**s**pelled word
+- `]t` -- Next **t**odo comment

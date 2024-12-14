@@ -6,5 +6,3 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "q", "<Nop>", keymap_opts)
 vim.g.maplocalleader = "q"
 vim.keymap.set("n", "<leader>q", "q", keymap_opts)
-
-

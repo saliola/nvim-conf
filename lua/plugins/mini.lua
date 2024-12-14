@@ -17,7 +17,7 @@ return {
                 }
             })
 
-            require('mini.surround').setup()
+            -- require('mini.surround').setup()
 
             require('mini.tabline').setup()
         end,
