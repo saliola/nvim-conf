@@ -1,11 +1,10 @@
 return {
     "chentoast/marks.nvim",
     event = "VeryLazy",
-    opts = {
-        builtin_marks = { ".", "<", ">", "^" },
-        mappings = {
-            next = "]m",
-            prev = "[m",
-        },
-    },
+    config = function()
+        require("marks").setup({
+            default_mappings = false
+        })
+        vim.api.nvim_create_user_command('MarksDeleteAll', function() require('marks').delete_buf() end, {})
+    end
 }

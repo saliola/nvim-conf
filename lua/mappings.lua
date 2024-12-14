@@ -3,7 +3,7 @@ vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>", { noremap = true,
 
 -- commenting
 vim.keymap.set("n", "<leader>cc", "gcc", { remap = true, desc = "Comment line" })
-vim.keymap.set("x", "<leader>cc", "gc", { remap = true, desc = "Comment selection" })
+vim.keymap.set("x", "<leader>cc", "gc",  { remap = true, desc = "Comment selection" })
 
 -- navigate through diagnostics
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
@@ -21,11 +21,16 @@ vim.cmd([[nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"]
 -- Join an entire paragraph (Source: Steve Losh)
 vim.keymap.set("n", "<leader>J", "mzvipJ`z", { noremap = true, silent = true, desc = "Join paragraph" })
 
--- navigate through the quickfix list (these mappings are coming in nvim-0.11)
-vim.keymap.set("n", "]q", ":cnext<CR>", { noremap = true, silent = true, desc = "Next quickfix entry" })
+-- navigate marks
+vim.keymap.set("n", "]m", require('marks').next,        { noremap = true, silent = true, desc = "Next mark" })
+vim.keymap.set("n", "[m", require('marks').prev,        { noremap = true, silent = true, desc = "Previous mark" })
+vim.keymap.set("n", "dm", require('marks').delete_line, { noremap = true, silent = true, desc = "Delete mark" })
+
+-- navigate through the quickfix list (these mappings are coming to nvim-0.11)
+vim.keymap.set("n", "]q", ":try|cnext|catch|cfirst|endtry <CR>", { noremap = true, silent = true, desc = "Next quickfix entry" })
+vim.keymap.set("n", "[q", ":try|cprev|catch|clast |endtry <CR>", { noremap = true, silent = true, desc = "Previous quickfix entry" })
 vim.keymap.set("n", "]Q", ":cfirst<CR>", { noremap = true, silent = true, desc = "First quickfix entry" })
-vim.keymap.set("n", "[q", ":cprev<CR>", { noremap = true, silent = true, desc = "Previous quickfix entry" })
-vim.keymap.set("n", "[Q", ":clast<CR>", { noremap = true, silent = true, desc = "Last quickfix entry" })
+vim.keymap.set("n", "[Q", ":clast<CR>",  { noremap = true, silent = true, desc = "Last quickfix entry" })
 
 -- new tab
 vim.keymap.set("n", "<leader>tn", ":tabnew<Space>", { noremap = true, silent = false, desc = "New tab" })
