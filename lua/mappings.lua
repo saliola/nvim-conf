@@ -1,13 +1,8 @@
--- double escape to clear search
-vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>", { noremap = true, silent = true, desc = "Clear search" })
+--- bracket mappings
 
 -- navigate through buffers
 vim.keymap.set("n", "]b", ":bnext<CR>", { noremap = true, silent = true, desc = "Next buffer" })
 vim.keymap.set("n", "[b", ":bprev<CR>", { noremap = true, silent = true, desc = "Previous buffer" })
-
--- commenting
-vim.keymap.set("n", "<leader>cc", "gcc", { remap = true, desc = "Comment line" })
-vim.keymap.set("x", "<leader>cc", "gc",  { remap = true, desc = "Comment selection" })
 
 -- navigate through diagnostics
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
@@ -16,14 +11,6 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnosti
 -- move line up/down respecting indent (inspired by ]e and [e in vim-unimpaired)
 vim.keymap.set("n", "]e", ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
 vim.keymap.set("n", "[e", ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
-
--- keybindings for folding
-vim.keymap.set("n", "<leader><space>", "za", { noremap = true, silent = true, desc = "Toggle fold" })
-vim.cmd([[nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"]]) -- skip over closed folds with { and }
-vim.cmd([[nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"]])
-
--- Join an entire paragraph (Source: Steve Losh)
-vim.keymap.set("n", "<leader>J", "mzvipJ`z", { noremap = true, silent = true, desc = "Join paragraph" })
 
 -- navigate marks
 vim.keymap.set("n", "]m", require('marks').next,        { noremap = true, silent = true, desc = "Next mark" })
@@ -36,17 +23,20 @@ vim.keymap.set("n", "[q", ":try|cprev|catch|clast |endtry <CR>", { noremap = tru
 vim.keymap.set("n", "]Q", ":cfirst<CR>", { noremap = true, silent = true, desc = "First quickfix entry" })
 vim.keymap.set("n", "[Q", ":clast<CR>",  { noremap = true, silent = true, desc = "Last quickfix entry" })
 
--- new tab
+
+--- leader mappings
+
+vim.keymap.set("n", "<leader><space>", "za", { noremap = true, silent = true, desc = "Toggle fold" })
+vim.keymap.set("n", "<leader>cc", "gcc", { remap = true, desc = "Comment line" })
+vim.keymap.set("x", "<leader>cc", "gc",  { remap = true, desc = "Comment selection" })
+vim.keymap.set("n", "<leader>J", "mzvipJ`z", { noremap = true, silent = true, desc = "Join paragraph" }) -- Steve Losh
 vim.keymap.set("n", "<leader>tn", ":tabnew<Space>", { noremap = true, silent = false, desc = "New tab" })
+vim.keymap.set("n", "<leader>zf", "mzzMzvzz10<c-e>`z", { noremap = true, silent = true, desc = "Focus the current line" }) -- Steve Losh
 
--- undo
+
+--- other mappings
+
+vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>", { noremap = true, silent = true, desc = "Clear search" })
 vim.keymap.set("n", "U", "<c-r>", { noremap = true, silent = true, desc = "Redo" })
-
--- window splitting
 vim.keymap.set("n", "<C-W>|", "<C-W>v", { noremap = true, silent = true, desc = "Split window vertically" })
 vim.keymap.set("n", "<C-W>-", "<C-W>s", { noremap = true, silent = true, desc = "Split window horizontally" })
-
--- "Focus" the current line: close all folds; open just the folds containing
--- the current line; move the line a few lines above the center of the screen.
--- From Steve Losh.
-vim.keymap.set("n", "<leader>zf", "mzzMzvzz10<c-e>`z", { noremap = true, silent = true, desc = "Focus the current line" })
