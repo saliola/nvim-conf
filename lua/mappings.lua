@@ -1,6 +1,10 @@
 -- double escape to clear search
 vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>", { noremap = true, silent = true, desc = "Clear search" })
 
+-- navigate through buffers
+vim.keymap.set("n", "]b", ":bnext<CR>", { noremap = true, silent = true, desc = "Next buffer" })
+vim.keymap.set("n", "[b", ":bprev<CR>", { noremap = true, silent = true, desc = "Previous buffer" })
+
 -- commenting
 vim.keymap.set("n", "<leader>cc", "gcc", { remap = true, desc = "Comment line" })
 vim.keymap.set("x", "<leader>cc", "gc",  { remap = true, desc = "Comment selection" })
