@@ -32,3 +32,7 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
         vim.opt.foldlevelstart = 99
     end
 })
+
+-- skip over closed folds with { and }
+vim.cmd([[nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"]])
+vim.cmd([[nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"]])
