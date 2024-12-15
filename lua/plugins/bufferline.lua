@@ -1,11 +1,15 @@
 return {
     "akinsho/bufferline.nvim",
-    -- version = "*",
-    branch = "main",
+    version = "*",
     opts = {
         options = {
-            mode = "tabs",
-            separator_stype = "slant",
+            mode = "bufferline",
+            numbers = "both",
+            indicator = {
+                style = "underline",
+            },
+            buffer_close_icon = '󰅖',
+            diagnostics = "nvim_lsp",
         },
     },
 }
