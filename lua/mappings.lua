@@ -35,6 +35,12 @@ vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files,  { de
 vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep,   { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags,   { desc = "Telescope help tags" })
 vim.keymap.set("n", "<leader>fp", require("telescope.builtin").builtin,     { desc = "Telescope find builtin pickers" })
+vim.keymap.set("n", "<leader>fx",
+    function()
+        require("telescope.builtin").find_files({
+            cwd = vim.fn.stdpath("config")
+        })
+    end,                                                                    { desc = "Telescope find config files" })
 
 -- misc
 vim.keymap.set("n", "<leader>J", "mzvipJ`z",                                { desc = "Join paragraph", noremap = true, silent = true }) -- Steve Losh
