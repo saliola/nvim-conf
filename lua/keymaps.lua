@@ -1,4 +1,4 @@
---- BRACKET MAPPINGS
+--[[ BRACKET MAPPINGS ]]--
 
 vim.keymap.set("n", "]b", ":bnext<CR>",                                     { desc = "Next buffer", noremap = true, silent = true })
 vim.keymap.set("n", "[b", ":bprev<CR>",                                     { desc = "Previous buffer", noremap = true, silent = true })
@@ -23,7 +23,7 @@ vim.keymap.set("n", "]Q", ":cfirst<CR>",                                    { de
 vim.keymap.set("n", "[Q", ":clast<CR>",                                     { desc = "Last quickfix entry", noremap = true, silent = true })
 
 
---- LEADER MAPPINGS
+--[[ LEADER MAPPINGS ]]--
 
 vim.keymap.set("n", "<leader><space>", "za",                                { desc = "Toggle fold", noremap = true, silent = true })
 vim.keymap.set("n", "<leader>cc", "gcc",                                    { desc = "Comment line", remap = true })
@@ -48,7 +48,7 @@ vim.keymap.set("n", "<leader>tn", ":tabnew<Space>",                         { de
 vim.keymap.set("n", "<leader>zf", "mzzMzvzz10<c-e>`z",                      { desc = "Focus current line", noremap = true, silent = true }) -- Steve Losh
 
 
---- OTHER MAPPINGS
+--[[ OTHER MAPPINGS ]]--
 
 vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>",              { desc = "Clear search", noremap = true, silent = true })
 vim.keymap.set("n", "U", "<c-r>",                                           { desc = "Redo", noremap = true, silent = true })

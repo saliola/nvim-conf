@@ -48,7 +48,7 @@ endfunction
 " Key mappings for functions
 " ---------------------------------------------
 " TexToggleLatexmk
-nmap <leader>tl <Plug>TexToggleLatexmk
+nmap <localleader>lt <Plug>TexToggleLatexmk
 nnoremap <script> <Plug>TexToggleLatexmk <SID>TexToggleLatexmk
 nnoremap <SID>TexToggleLatexmk :call <SID>TexToggleLatexmk()<CR>
 
