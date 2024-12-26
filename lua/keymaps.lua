@@ -56,18 +56,31 @@ vim.keymap.set("n", "<leader><space>", "za",                                { de
 vim.keymap.set("n", "<leader>cc", "gcc",                                    { desc = "Comment line", remap = true })
 vim.keymap.set("x", "<leader>cc", "gc",                                     { desc = "Comment selection", remap = true })
 
--- telescope
-vim.keymap.set("n", "<leader>fc", require("telescope.builtin").commands,    { desc = "Telescope find commands" })
-vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files,  { desc = "Telescope find files" })
-vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep,   { desc = "Telescope live grep" })
-vim.keymap.set("n", "<leader>fh", require("telescope.builtin").help_tags,   { desc = "Telescope help tags" })
-vim.keymap.set("n", "<leader>fp", require("telescope.builtin").builtin,     { desc = "Telescope find builtin pickers" })
-vim.keymap.set("n", "<leader>fx",
+-- fzf-lua
+vim.keymap.set("n", "<leader>fb", require("fzf-lua").builtin,               { desc = "fzf builtin" })
+vim.keymap.set("n", "<leader>fc",
     function()
-        require("telescope.builtin").find_files({
+        require("fzf-lua").files({
             cwd = vim.fn.stdpath("config")
         })
-    end,                                                                    { desc = "Telescope find config files" })
+    end,                                                                    { desc = "fzf config files" })
+vim.keymap.set("n", "<leader>ff",
+    function()
+        require("fzf-lua").files({ resume = true })
+    end,                                                                    { desc = "fzf files" })
+vim.keymap.set("n", "<leader>fg", require("fzf-lua").live_grep,             { desc = "fzf live grep" })
+vim.keymap.set("n", "<leader>fh", require("fzf-lua").help_tags,             { desc = "fzf help tags" })
+vim.keymap.set("n", "<leader>fo", require("fzf-lua").oldfiles,              { desc = "fzf oldfiles" })
+vim.keymap.set("n", "<leader>fs",
+    function()
+        require("fzf-lua").spell_suggest({
+            winopts = {
+                relative = 'cursor',
+                height = 0.5,
+                width = 0.5,
+            }
+        })
+    end,                                                                    { desc = "fzf spelling suggestions" })
 
 -- misc
 vim.keymap.set("n", "<leader>J", "mzvipJ`z",                                { desc = "Join paragraph", noremap = true, silent = true }) -- Steve Losh
@@ -82,16 +95,11 @@ vim.keymap.set("n", "<leader>nd", Snacks.notifier.hide,                     { de
 vim.keymap.set("n", "<leader>lg", function() Snacks.lazygit() end,          { desc = "Lazygit (cwd)" })
 vim.keymap.set("n", "<leader>ll", Snacks.lazygit.log,                       { desc = "Lazygit Log (cwd)" })
 
-
 -- yank / copy / paste
 vim.keymap.set("n", "<leader>y", '"+yy',                                    { desc = "Yank line to clipboard" })
 vim.keymap.set("v", "<leader>y", '"+y',                                     { desc = "Yank visual selection to clipboard" })
 vim.keymap.set("n", "<leader>p", "<Plug>(YankyPutAfterLinewise)",           { desc = "Put yanked text in line below", expr = true })
 vim.keymap.set("n", "<leader>P", "<Plug>(YankyPutBeforeLinewise)",          { desc = "Put yanked text in line above", expr = true })
-vim.keymap.set("n", "<leader>fy",
-        function()
-            require("telescope").extensions.yank_history.yank_history({})
-        end,                                                                { desc = "Open Yank History" })
 
 
 --[[ OTHER MAPPINGS ]]--
