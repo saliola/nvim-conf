@@ -16,8 +16,6 @@ return {
                     end
                 }
             })
-
-            -- require('mini.surround').setup()
         end,
     },
 }

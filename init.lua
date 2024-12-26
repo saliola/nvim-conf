@@ -11,6 +11,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.cmd("syntax off")
+vim.g.syntax_on = false
+
 require("leader")
 
 require("lazy").setup("plugins", {

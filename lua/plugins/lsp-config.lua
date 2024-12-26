@@ -1,4 +1,17 @@
 return {
+    {
+        "nvimtools/none-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    null_ls.builtins.formatting.stylua,
+                },
+            })
+
+            vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+        end,
+    },
 
     {
         "williamboman/mason.nvim",
@@ -51,7 +64,7 @@ return {
                 capabilities = capabilities
             })
 
-            lspconfig.pyright.setup({
+            lspconfig.basedpyright.setup({
                 capabilities = capabilities,
                 filetypes = {"python"},
                 settings = {

@@ -73,12 +73,4 @@ return {
             timeout = 3000,
         },
     },
-    keys = {
-        { "<leader>nh",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
-        { "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-        { "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit (cwd)" },
-        { "<leader>ll", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
-        { ']]', function() Snacks.words.jump( vim.v.count1, true) end, desc = 'Next LSP highlight' },
-        { '[[', function() Snacks.words.jump(-vim.v.count1, true) end, desc = 'Prev LSP highlight' },
-    }
 }
