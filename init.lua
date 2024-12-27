@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.cmd("syntax off")
 vim.g.syntax_on = false
+vim.cmd("set termguicolors")
 
 require("leader")
 
