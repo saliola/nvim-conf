@@ -111,6 +111,5 @@ vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>",              { de
 vim.keymap.set("n", "U", "<c-r>",                                           { desc = "Redo", noremap = true, silent = true })
 vim.keymap.set("n", "gV", "'`[' . getregtype()[0] . '`]'",                  { desc = "Select recently changed/pasted text", expr = true, noremap = true })
 
--- oil
-vim.keymap.set("n", "-", require("oil").toggle_float,                       { desc = "Open oil browser" })
-
+-- yazi
+vim.keymap.set("n", "-", "<cmd>Yazi<cr>",                                   { desc = "Open yazi file browser" })
