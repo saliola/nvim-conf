@@ -8,14 +8,17 @@ return {
                 suggestion = {
                     enabled = true,
                     auto_trigger = true,
-                }
+                },
+                panel = { enabled = false, },
             })
         end,
     },
 
     {
         'saghen/blink.cmp',
-        dependencies = 'rafamadriz/friendly-snippets',
+        dependencies = {
+            { 'rafamadriz/friendly-snippets', },
+        },
         version = '*',
         opts = {
             keymap = { preset = 'default' },
@@ -60,14 +63,6 @@ return {
                     enabled = true,
                     module = "blink.cmp.sources.snippets",
                     score_offset = 900,
-                },
-                copilot = {
-                    name = "copilot",
-                    enabled = true,
-                    module = "blink-cmp-copilot",
-                    kind = "Copilot",
-                    score_offset = -100,
-                    async = true,
                 },
             },
         },
