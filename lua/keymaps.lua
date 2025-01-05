@@ -64,10 +64,7 @@ vim.keymap.set("n", "<leader>fc",
             cwd = vim.fn.stdpath("config")
         })
     end,                                                                    { desc = "fzf config files" })
-vim.keymap.set("n", "<leader>ff",
-    function()
-        require("fzf-lua").files({ resume = true })
-    end,                                                                    { desc = "fzf files" })
+vim.keymap.set("n", "<leader>ff", require("fzf-lua").files,                 { desc = "fzf files" })
 vim.keymap.set("n", "<leader>fg", require("fzf-lua").live_grep,             { desc = "fzf live grep" })
 vim.keymap.set("n", "<leader>fh", require("fzf-lua").help_tags,             { desc = "fzf help tags" })
 vim.keymap.set("n", "<leader>fo", require("fzf-lua").oldfiles,              { desc = "fzf oldfiles" })
@@ -81,6 +78,14 @@ vim.keymap.set("n", "<leader>fs",
             }
         })
     end,                                                                    { desc = "fzf spelling suggestions" })
+vim.keymap.set('t', '<C-_>',
+    function()
+        if (vim.bo.buftype == 'terminal' and vim.bo.filetype == 'fzf') then
+            local cur_dir = string.match(vim.b.term_title, "//(.-)//")
+            local new_dir = vim.fn.fnamemodify(cur_dir, ':p:h:h')
+            require("fzf-lua").files({ cwd = new_dir })
+        end
+    end,                                                                    { desc = "fzf: open parent directory" })
 
 -- misc
 vim.keymap.set("n", "<leader>J", "mzvipJ`z",                                { desc = "Join paragraph", noremap = true, silent = true }) -- Steve Losh
