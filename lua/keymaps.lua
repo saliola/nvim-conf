@@ -57,7 +57,7 @@ vim.keymap.set("n", "<leader>cc", "gcc",                                    { de
 vim.keymap.set("x", "<leader>cc", "gc",                                     { desc = "Comment selection", remap = true })
 
 -- fzf-lua
-vim.keymap.set("n", "<leader>fb", require("fzf-lua").builtin,               { desc = "fzf builtin" })
+vim.keymap.set("n", "<leader>fb", require("fzf-lua").buffers,               { desc = "fzf buffers" })
 vim.keymap.set("n", "<leader>fc",
     function()
         require("fzf-lua").files({
@@ -78,7 +78,7 @@ vim.keymap.set("n", "<leader>fs",
             }
         })
     end,                                                                    { desc = "fzf spelling suggestions" })
-
+vim.keymap.set("n", "<leader>fz", require("fzf-lua").builtin,               { desc = "fzf builtin commands" })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "fzf",
     callback = function()
