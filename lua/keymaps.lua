@@ -67,7 +67,7 @@ vim.keymap.set("n", "<leader>fc",
 vim.keymap.set("n", "<leader>ff", require("fzf-lua").files,                 { desc = "fzf files" })
 vim.keymap.set("n", "<leader>fg", require("fzf-lua").live_grep,             { desc = "fzf live grep" })
 vim.keymap.set("n", "<leader>fh", require("fzf-lua").help_tags,             { desc = "fzf help tags" })
-vim.keymap.set("n", "<leader>fo", require("fzf-lua").oldfiles,              { desc = "fzf oldfiles" })
+vim.keymap.set("n", "<leader>fr", require("fzf-lua").oldfiles,              { desc = "fzf recent files (oldfiles)" })
 vim.keymap.set("n", "<leader>fs",
     function()
         require("fzf-lua").spell_suggest({
@@ -78,7 +78,7 @@ vim.keymap.set("n", "<leader>fs",
             }
         })
     end,                                                                    { desc = "fzf spelling suggestions" })
-vim.keymap.set("n", "<leader>fz", require("fzf-lua").builtin,               { desc = "fzf builtin commands" })
+vim.keymap.set("n", "<leader>fz", require("fzf-lua").builtin,               { desc = "fzf builtin commands for fzf" })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "fzf",
     callback = function()
