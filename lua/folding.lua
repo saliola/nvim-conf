@@ -22,7 +22,7 @@ query.set("python", "folds", [[
 ]])
 
 -- disable Lua folding
-query.set("lua", "folds", [[]])
+-- query.set("lua", "folds", [[]])
 
 -- settings for LaTeX files
 vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {

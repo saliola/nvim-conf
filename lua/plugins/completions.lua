@@ -18,8 +18,6 @@ return {
         'saghen/blink.cmp',
         dependencies = {
             { 'rafamadriz/friendly-snippets', },
-            -- { 'moyiz/blink-emoji.nvim', },
-            -- { 'Kaiser-Yang/blink-cmp-dictionary', },
         },
         version = '*',
         opts = {
@@ -75,8 +73,8 @@ return {
                 menu = {
                     draw = {
                         columns = {
-                            { "kind_icon" },
                             { "label", "label_description", gap = 1 },
+                            { "kind_icon", "kind", gap = 1 },
                             { "source_name" },
                         },
                         components = {
@@ -89,65 +87,25 @@ return {
                     },
                 },
                 documentation = {
-                    auto_show = true,
+                    auto_show = false,
                     auto_show_delay_ms = 0,
                 },
             },
         },
-        signature = {
-            enabled = true,
-            window = { border = 'rounded' },
-        },
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev', 'emoji', 'dictionary' },
+            default = { 'lsp', 'path', 'snippets', 'buffer', },
             providers = {
                 buffer = {
                     name = "buffer",
                     module = "blink.cmp.sources.buffer",
-                    score_offset = 500,
                 },
-                -- dictionary = {
-                --     name = "dictionary",
-                --     module = "blink-cmp-dictionary",
-                --     opts = {
-                --         prefix_min_len = 3,
-                --         get_command = {
-                --             "rg",
-                --             "--color=never",
-                --             "--no-line-number",
-                --             "--no-messages",
-                --             "--no-filename",
-                --             "--ignore-case",
-                --             "--",
-                --             "${prefix}",
-                --             vim.fn.expand("~/.config/nvim/words"),
-                --         },
-                --     },
-                -- },
-                -- emoji = {
-                --     module = "blink-emoji",
-                --     name = "emoji",
-                --     score_offset = 15,
-                --     opts = { insert = true },
-                -- },
-                -- lazydev = {
-                --     name = "lazydev",
-                --     module = "lazydev.integrations.blink",
-                --     score_offset = 100,
-                -- },
                 lsp = {
                     name = "lsp",
-                    enabled = true,
                     module = "blink.cmp.sources.lsp",
-                    kind = "LSP",
-                    fallback = { "snippets", "buffer" },
-                    score_offset = 1000,
                 },
                 path = {
                     name = "path",
-                    enabled = true,
                     module = "blink.cmp.sources.path",
-                    score_offset = 800,
                     opts = {
                         trailing_slash = false,
                         label_trailing_slash = true,
@@ -159,14 +117,10 @@ return {
                 },
                 snippets = {
                     name = "snippets",
-                    enabled = true,
-                    max_items = 8,
-                    min_keyword_length = 2,
                     module = "blink.cmp.sources.snippets",
-                    score_offset = 900,
                 },
             },
         },
-        opts_extend = { "sources.default" }
+        opts_extend = { "sources.default" },
     },
 }
