@@ -1,6 +1,7 @@
 return {
     {
         "mikavilpas/yazi.nvim",
-        event = "VeryLazy",
+        lazy = true,
+        cmd = { "Yazi", },
     },
 }

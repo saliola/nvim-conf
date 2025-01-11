@@ -40,8 +40,8 @@ vim.keymap.set("n", "]e", ":m .+1<CR>==",                                   { de
 vim.keymap.set("n", "[e", ":m .-2<CR>==",                                   { desc = "Move line up", noremap = true, silent = true })
 
 -- navigate TODO comments
-vim.keymap.set("n", "]t", require("todo-comments").jump_next,               { desc = "Next todo comment" })
-vim.keymap.set("n", "[t", require("todo-comments").jump_prev,               { desc = "Previous todo comment" })
+vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end,  { desc = "Next todo comment" })
+vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end,  { desc = "Previous todo comment" })
 
 -- navigate the quickfix list (these mappings are coming to nvim-0.11)
 vim.keymap.set("n", "]q", ":try|cnext|catch|cfirst|endtry <CR>",            { desc = "Next quickfix entry", noremap = true, silent = true })
@@ -57,17 +57,17 @@ vim.keymap.set("n", "<leader>cc", "gcc",                                    { de
 vim.keymap.set("x", "<leader>cc", "gc",                                     { desc = "Comment selection", remap = true })
 
 -- fzf-lua
-vim.keymap.set("n", "<leader>fb", require("fzf-lua").buffers,               { desc = "fzf buffers" })
+vim.keymap.set("n", "<leader>fb", function() require("fzf-lua").buffers() end,  { desc = "fzf buffers" })
 vim.keymap.set("n", "<leader>fc",
     function()
         require("fzf-lua").files({
             cwd = vim.fn.stdpath("config")
         })
-    end,                                                                    { desc = "fzf config files" })
-vim.keymap.set("n", "<leader>ff", require("fzf-lua").files,                 { desc = "fzf files" })
-vim.keymap.set("n", "<leader>fg", require("fzf-lua").live_grep,             { desc = "fzf live grep" })
-vim.keymap.set("n", "<leader>fh", require("fzf-lua").help_tags,             { desc = "fzf help tags" })
-vim.keymap.set("n", "<leader>fr", require("fzf-lua").oldfiles,              { desc = "fzf recent files (oldfiles)" })
+    end,                                                                        { desc = "fzf config files" })
+vim.keymap.set("n", "<leader>ff", function() require("fzf-lua").files() end,    { desc = "fzf files" })
+vim.keymap.set("n", "<leader>fg", function() require("fzf-lua").live_grep() end,{ desc = "fzf live grep" })
+vim.keymap.set("n", "<leader>fh", function() require("fzf-lua").help_tags() end,{ desc = "fzf help tags" })
+vim.keymap.set("n", "<leader>fr", function() require("fzf-lua").oldfiles() end, { desc = "fzf recent files (oldfiles)" })
 vim.keymap.set("n", "<leader>fs",
     function()
         require("fzf-lua").spell_suggest({
@@ -78,7 +78,7 @@ vim.keymap.set("n", "<leader>fs",
             }
         })
     end,                                                                    { desc = "fzf spelling suggestions" })
-vim.keymap.set("n", "<leader>fz", require("fzf-lua").builtin,               { desc = "fzf builtin commands for fzf" })
+vim.keymap.set("n", "<leader>fz", function() require("fzf-lua").builtin() end,  { desc = "fzf builtin commands for fzf" })
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "fzf",
     callback = function()

@@ -1,3 +1,0 @@
-return {
-    "saliola/vim-sage",
-}

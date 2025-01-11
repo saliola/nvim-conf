@@ -1,6 +1,7 @@
 return {
     {
         "utilyre/barbecue.nvim",
+        event = { "BufRead", "BufNewFile" },
         name = "barbecue",
         dependencies = {
             {

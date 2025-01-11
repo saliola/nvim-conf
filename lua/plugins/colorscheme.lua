@@ -2,41 +2,23 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        lazy = false,
-        priority = 1000,
+        lazy = true,
     },
 
     {
         "rebelot/kanagawa.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            -- vim.cmd.colorscheme("kanagawa")
-        end,
+        lazy = true,
     },
 
     {
         "KeitaNakamura/neodark.vim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-        config = function()
-            -- vim.cmd.colorscheme("neodark")
-        end,
-    },
-
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
+        lazy = true,
     },
 
     {
         "zenbones-theme/zenbones.nvim",
         dependencies = "rktjmp/lush.nvim",
-        lazy = false,
-        priority = 1000,
+        event = { "VimEnter" },
         opts = {},
         config = function()
             -- vim.g.zenbones_darken_comments = 45

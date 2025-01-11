@@ -1,5 +1,6 @@
 return {
     "nvim-lualine/lualine.nvim",
+    event = "VimEnter",
     config = function()
         local lualine = require("lualine")
         local lazy_status = require("lazy.status")
