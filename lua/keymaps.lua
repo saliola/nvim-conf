@@ -1,13 +1,11 @@
-local Snacks = require('snacks')
-
 --[[ BRACKET MAPPINGS ]]--
 
 -- navigate marks
 -- use the builtin ]' / [' and ]` / [`
 
 -- LSP highlights
-vim.keymap.set("n", ']]', function() Snacks.words.jump( vim.v.count1, true) end, { desc = 'Next LSP highlight' })
-vim.keymap.set("n", '[[', function() Snacks.words.jump(-vim.v.count1, true) end, { desc = 'Prev LSP highlight' })
+vim.keymap.set("n", ']]', function() require('snacks').words.jump( vim.v.count1, true) end, { desc = 'Next LSP highlight' })
+vim.keymap.set("n", '[[', function() require('snacks').words.jump(-vim.v.count1, true) end, { desc = 'Prev LSP highlight' })
 
 -- navigate buffers
 vim.keymap.set("n", "]b", ":bnext<CR>",                                     { desc = "Next buffer", noremap = true, silent = true })
@@ -97,12 +95,12 @@ vim.keymap.set("n", "<leader>tn", ":tabnew<Space>",                         { de
 vim.keymap.set("n", "<leader>zf", "mzzMzvzz10<c-e>`z",                      { desc = "Focus current line", noremap = true, silent = true }) -- Steve Losh
 
 -- notifications
-vim.keymap.set("n", "<leader>nh", Snacks.notifier.show_history,             { desc = "Notification History" })
-vim.keymap.set("n", "<leader>nd", Snacks.notifier.hide,                     { desc = "Dismiss All Notifications" })
+vim.keymap.set("n", "<leader>nh", function() require('snacks').notifier.show_history() end, { desc = "Notification History" })
+vim.keymap.set("n", "<leader>nd", function() require('snacks').notifier.hide() end,         { desc = "Dismiss All Notifications" })
 
 -- lazygit
-vim.keymap.set("n", "<leader>lg", function() Snacks.lazygit() end,          { desc = "Lazygit (cwd)" })
-vim.keymap.set("n", "<leader>ll", Snacks.lazygit.log,                       { desc = "Lazygit Log (cwd)" })
+vim.keymap.set("n", "<leader>lg", function() require('snacks').lazygit() end,          { desc = "Lazygit (cwd)" })
+vim.keymap.set("n", "<leader>ll", require('snacks').lazygit.log,                       { desc = "Lazygit Log (cwd)" })
 
 -- yank / copy / paste
 vim.keymap.set("n", "<leader>y", '"+yy',                                    { desc = "Yank line to clipboard" })
