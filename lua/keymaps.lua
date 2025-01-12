@@ -1,73 +1,201 @@
+local set_keymap = function(opts)
+    vim.keymap.set(opts.mode or "n",
+        opts.keys,
+        opts.command,
+        {
+            desc = opts.desc,
+            noremap = opts.noremap,
+            remap = opts.remap,
+            silent = opts.silent,
+            expr = opts.expr,
+        }
+    )
+end
+
 --[[ BRACKET MAPPINGS ]]--
 
 -- navigate marks
 -- use the builtin ]' / [' and ]` / [`
 
 -- LSP highlights
-vim.keymap.set("n", ']]', function() require('snacks').words.jump( vim.v.count1, true) end, { desc = 'Next LSP highlight' })
-vim.keymap.set("n", '[[', function() require('snacks').words.jump(-vim.v.count1, true) end, { desc = 'Prev LSP highlight' })
+set_keymap({
+    desc = "Next LSP highlight",
+    keys = "]]",
+    command = "<cmd>lua require('snacks').words.jump(vim.v.count1, true)<cr>",
+})
+
+set_keymap({
+    desc = "Prev LSP highlight",
+    keys = "[[",
+    command = "<cmd>lua require('snacks').words.jump(-vim.v.count1, true)<cr>",
+})
 
 -- navigate buffers
-vim.keymap.set("n", "]b", ":bnext<CR>",                                     { desc = "Next buffer", noremap = true, silent = true })
-vim.keymap.set("n", "[b", ":bprev<CR>",                                     { desc = "Previous buffer", noremap = true, silent = true })
+set_keymap({
+    desc = "Next buffer",
+    keys = "]b",
+    command = ":bnext<CR>",
+})
+
+set_keymap({
+    desc = "Previous buffer",
+    keys = "[b",
+    command = ":bfirst<CR>",
+})
 
 -- navigate changes / hunks
-vim.keymap.set('n', ']c',
-    function()
+set_keymap({
+    desc = "Next change (hunk)",
+    keys = "]c",
+    command = function()
         if vim.wo.diff then
-            vim.cmd.normal({ ']c', bang = true })
+            vim.cmd.normal({ "]c", bang = true })
         else
             require('gitsigns').nav_hunk('next')
         end
-    end,                                                                    { desc = 'Next change (hunk)' })
-vim.keymap.set('n', '[c',
-    function()
+    end,
+})
+
+set_keymap({
+    desc = "Previous change (hunk)",
+    keys = "[c",
+    command = function()
         if vim.wo.diff then
-            vim.cmd.normal({ '[c', bang = true })
+            vim.cmd.normal({ "[c", bang = true })
         else
             require('gitsigns').nav_hunk('prev')
         end
-    end,                                                                    { desc = 'Previous change (hunk)' })
+    end,
+})
 
 -- navigate diagnostics
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next,                         { desc = "Next diagnostic" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev,                         { desc = "Previous diagnostic" })
+set_keymap({
+    desc = "Next diagnostic",
+    keys = "]d",
+    command = "<cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>",
+})
+
+set_keymap({
+    desc = "Previous diagnostic",
+    keys = "[d",
+    command = "<cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>",
+})
 
 -- move line up/down respecting indent (inspired by ]e and [e in vim-unimpaired)
-vim.keymap.set("n", "]e", ":m .+1<CR>==",                                   { desc = "Move line down", noremap = true, silent = true })
-vim.keymap.set("n", "[e", ":m .-2<CR>==",                                   { desc = "Move line up", noremap = true, silent = true })
+set_keymap({
+    desc = "Move line down",
+    keys = "]e",
+    command = ":m .+1<CR>==",
+})
+set_keymap({
+    desc = "Move line up",
+    keys = "[e",
+    command = ":m .-2<CR>==",
+})
 
 -- navigate TODO comments
-vim.keymap.set("n", "]t", function() require("todo-comments").jump_next() end,  { desc = "Next todo comment" })
-vim.keymap.set("n", "[t", function() require("todo-comments").jump_prev() end,  { desc = "Previous todo comment" })
+set_keymap({
+    desc = "Next todo comment",
+    keys = "]t",
+    command = "<cmd>lua require('todo-comments').jump_next()<cr>",
+})
+
+set_keymap({
+    desc = "Previous todo comment",
+    keys = "[t",
+    command = "<cmd>lua require('todo-comments').jump_prev()<cr>",
+})
 
 -- navigate the quickfix list (these mappings are coming to nvim-0.11)
-vim.keymap.set("n", "]q", ":try|cnext|catch|cfirst|endtry <CR>",            { desc = "Next quickfix entry", noremap = true, silent = true })
-vim.keymap.set("n", "[q", ":try|cprev|catch|clast |endtry <CR>",            { desc = "Previous quickfix entry", noremap = true, silent = true })
-vim.keymap.set("n", "]Q", ":cfirst<CR>",                                    { desc = "First quickfix entry", noremap = true, silent = true })
-vim.keymap.set("n", "[Q", ":clast<CR>",                                     { desc = "Last quickfix entry", noremap = true, silent = true })
+set_keymap({
+    desc = "Next quickfix entry",
+    keys = "]q",
+    command = ":try|cnext|catch|cfirst|endtry <CR>",
+})
+
+set_keymap({
+    desc = "Previous quickfix entry",
+    keys = "[q",
+    command = ":try|cprev|catch|clast|endtry <CR>",
+})
+
+set_keymap({
+    desc = "First quickfix entry",
+    keys = "]Q",
+    command = ":cfirst<CR>",
+})
+
+set_keymap({
+    desc = "Last quickfix entry",
+    keys = "[Q",
+    command = ":clast<CR>",
+})
 
 
 --[[ LEADER MAPPINGS ]]--
 
-vim.keymap.set("n", "<leader><space>", "za",                                { desc = "Toggle fold", noremap = true, silent = true })
-vim.keymap.set("n", "<leader>cc", "gcc",                                    { desc = "Comment line", remap = true })
-vim.keymap.set("x", "<leader>cc", "gc",                                     { desc = "Comment selection", remap = true })
+set_keymap({
+    desc = "Toggle fold",
+    keys = "<leader><space>",
+    command = "za",
+})
+
+set_keymap({
+    desc = "Comment line",
+    keys = "<leader>cc",
+    command = "gcc",
+    remap = true,
+})
+
+set_keymap({
+    desc = "Comment selection",
+    mode = "v",
+    keys = "<leader>cc",
+    command = "gc",
+    remap = true,
+})
 
 -- fzf-lua
-vim.keymap.set("n", "<leader>fb", function() require("fzf-lua").buffers() end,  { desc = "fzf buffers" })
-vim.keymap.set("n", "<leader>fc",
-    function()
-        require("fzf-lua").files({
-            cwd = vim.fn.stdpath("config")
-        })
-    end,                                                                        { desc = "fzf config files" })
-vim.keymap.set("n", "<leader>ff", function() require("fzf-lua").files() end,    { desc = "fzf files" })
-vim.keymap.set("n", "<leader>fg", function() require("fzf-lua").live_grep() end,{ desc = "fzf live grep" })
-vim.keymap.set("n", "<leader>fh", function() require("fzf-lua").help_tags() end,{ desc = "fzf help tags" })
-vim.keymap.set("n", "<leader>fr", function() require("fzf-lua").oldfiles() end, { desc = "fzf recent files (oldfiles)" })
-vim.keymap.set("n", "<leader>fs",
-    function()
+set_keymap({
+    desc = "fzf buffers",
+    keys = "<leader>fb",
+    command = "<cmd>lua require('fzf-lua').buffers()<cr>",
+})
+
+set_keymap({
+    desc = "fzf config files",
+    keys = "<leader>fc",
+    command = "<cmd>lua require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })<cr>",
+})
+
+set_keymap({
+    desc = "fzf files",
+    keys = "<leader>ff",
+    command = "<cmd>lua require('fzf-lua').files()<cr>",
+})
+
+set_keymap({
+    desc = "fzf live grep",
+    keys = "<leader>fg",
+    command = "<cmd>lua require('fzf-lua').live_grep()<cr>",
+})
+
+set_keymap({
+    desc = "fzf help tags",
+    keys = "<leader>fh",
+    command = "<cmd>lua require('fzf-lua').help_tags()<cr>",
+})
+
+set_keymap({
+    desc = "fzf recent files (oldfiles)",
+    keys = "<leader>fr",
+    command = "<cmd>lua require('fzf-lua').oldfiles()<cr>",
+})
+
+set_keymap({
+    desc = "fzf spelling suggestions",
+    keys = "<leader>fs",
+    command = function()
         require("fzf-lua").spell_suggest({
             winopts = {
                 relative = 'cursor',
@@ -75,48 +203,133 @@ vim.keymap.set("n", "<leader>fs",
                 width = 0.5,
             }
         })
-    end,                                                                    { desc = "fzf spelling suggestions" })
-vim.keymap.set("n", "<leader>fz", function() require("fzf-lua").builtin() end,  { desc = "fzf builtin commands for fzf" })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "fzf",
-    callback = function()
-        vim.keymap.set('t', '<C-_>',
-            function()
-                local cur_dir = string.match(vim.b.term_title, "//(.-)//")
-                local new_dir = vim.fn.fnamemodify(cur_dir, ':p:h:h')
-                require("fzf-lua").files({ cwd = new_dir })
-            end,                                                            { desc = "fzf: open parent directory" })
-    end
+    end,
+})
+
+set_keymap({
+    desc = "fzf builtin commands for fzf",
+    keys = "<leader>fz",
+    command = "<cmd>lua require('fzf-lua').builtin()<cr>",
 })
 
 -- misc
-vim.keymap.set("n", "<leader>J", "mzvipJ`z",                                { desc = "Join paragraph", noremap = true, silent = true }) -- Steve Losh
-vim.keymap.set("n", "<leader>tn", ":tabnew<Space>",                         { desc = "New tab", noremap = true, silent = false })
-vim.keymap.set("n", "<leader>zf", "mzzMzvzz10<c-e>`z",                      { desc = "Focus current line", noremap = true, silent = true }) -- Steve Losh
+set_keymap({ -- Steve Losh
+    desc = "Join paragraph",
+    keys = "<leader>J",
+    command = "mzvipJ`z",
+})
+
+set_keymap({
+    desc = "New tab",
+    keys = "<leader>tn",
+    command = ":tabnew<Space>",
+})
+
+set_keymap({ -- Steve Losh
+    desc = "Focus current line",
+    keys = "<leader>zf",
+    command = "mzzMzvzz10<c-e>`z",
+})
 
 -- notifications
-vim.keymap.set("n", "<leader>nh", function() require('snacks').notifier.show_history() end, { desc = "Notification History" })
-vim.keymap.set("n", "<leader>nd", function() require('snacks').notifier.hide() end,         { desc = "Dismiss All Notifications" })
+
+set_keymap({
+    desc = "Notification history",
+    keys = "<leader>nh",
+    command = "<cmd>lua require('snacks').notifier.show_history()<CR>",
+})
+
+set_keymap({
+    desc = "Dismiss notification",
+    keys = "<leader>nd",
+    command = "<cmd>lua require('snacks').notifier.hide()<CR>",
+})
 
 -- lazygit
-vim.keymap.set("n", "<leader>lg", function() require('snacks').lazygit() end,          { desc = "Lazygit (cwd)" })
-vim.keymap.set("n", "<leader>ll", require('snacks').lazygit.log,                       { desc = "Lazygit Log (cwd)" })
+set_keymap({
+    desc = "Lazygit (cwd)",
+    keys = "<leader>lg",
+    command = "<cmd>lua require('snacks').lazygit()<CR>",
+})
+
+set_keymap({
+    desc = "Lazygit Log",
+    keys = "<leader>ll",
+    command = "<cmd>lua require('snacks').lazygit.log()<CR>",
+})
 
 -- yank / copy / paste
-vim.keymap.set("n", "<leader>y", '"+yy',                                    { desc = "Yank line to clipboard" })
-vim.keymap.set("v", "<leader>y", '"+y',                                     { desc = "Yank visual selection to clipboard" })
-vim.keymap.set("n", "<leader>p", "<Plug>(YankyPutAfterLinewise)",           { desc = "Put yanked text in line below", expr = true })
-vim.keymap.set("n", "<leader>P", "<Plug>(YankyPutBeforeLinewise)",          { desc = "Put yanked text in line above", expr = true })
+set_keymap({
+    desc = "Yank line to clipboard",
+    keys = "<leader>y",
+    command = '"+yy',
+})
+
+set_keymap({
+    desc = "Yank visual selection to clipboard",
+    keys = "<leader>y",
+    mode = "v",
+    command = '"+y',
+})
+
+set_keymap({
+    desc = "Put yanked text in line below",
+    keys = "<leader>p",
+    command = "<Plug>(YankyPutAfterLinewise)",
+    expr = true,
+})
+
+set_keymap({
+    desc = "Put yanked text in line above",
+    keys = "<leader>P",
+    command = "<Plug>(YankyPutBeforeLinewise)",
+    expr = true,
+})
 
 
 --[[ OTHER MAPPINGS ]]--
 
-vim.keymap.set("c", "<C-A>", "<Home>",                                      { desc = "Move to beginning of line in command mode", noremap = true })
-vim.keymap.set("n", "<C-W>-", "<C-W>s",                                     { desc = "Split window horizontally", noremap = true, silent = true })
-vim.keymap.set("n", "<C-W>|", "<C-W>v",                                     { desc = "Split window vertically", noremap = true, silent = true })
-vim.keymap.set("n", "<Esc><Esc>", "<Esc>:nohlsearch<CR><Esc>",              { desc = "Clear search", noremap = true, silent = true })
-vim.keymap.set("n", "U", "<c-r>",                                           { desc = "Redo", noremap = true, silent = true })
-vim.keymap.set("n", "gV", "'`[' . getregtype()[0] . '`]'",                  { desc = "Select recently changed/pasted text", expr = true, noremap = true })
+set_keymap({
+    desc = "Move to beginning of line in command mode",
+    keys = "<C-A>",
+    mode = "c",
+    command = "<Home>",
+})
+
+set_keymap({
+    desc = "Split window horizontally",
+    keys = "<C-W>-",
+    command = "<C-W>s",
+})
+
+set_keymap({
+    desc = "Split window vertically",
+    keys = "<C-W>|",
+    command = "<C-W>v",
+})
+
+set_keymap({
+    desc = "Clear search",
+    keys = "<Esc>",
+    command = "<Esc>:nohlsearch<CR><Esc>",
+})
+
+set_keymap({
+    desc = "Redo",
+    keys = "U",
+    command = "<C-r>",
+})
+
+set_keymap({
+    desc = "Select recently changed/pasted text",
+    keys = "gV",
+    command = "'`[' . getregtype()[0] . '`]'",
+    expr = true,
+})
 
 -- yazi
-vim.keymap.set("n", "-", "<cmd>Yazi<cr>",                                   { desc = "Open yazi file browser" })
+set_keymap({
+    desc = "Open yazi file browser",
+    keys = "-",
+    command = "<cmd>Yazi<cr>",
+})
