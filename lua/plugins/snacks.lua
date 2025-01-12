@@ -3,6 +3,13 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
+        styles = {
+            notification_history = {
+                wo = {
+                    wrap = true,
+                },
+            },
+        },
         bigfile = { enabled = true },
         dashboard = {
             enabled = true,
