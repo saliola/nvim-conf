@@ -10,7 +10,7 @@ return {
         event = { "VimEnter" },
         lazy = true,
         config = function()
-            vim.cmd.colorscheme("kanagawa")
+            vim.cmd.colorscheme("kanagawa-dragon")
         end,
     },
 
