@@ -68,18 +68,7 @@ return {
             enabled = true,
             timeout = 3000,
         },
-        picker = {
-            win = {
-                input = {
-                    keys = {
-                        ["<c-j>"] = { "echo hello" },
-                        ["<c-k>"] = { },
-                        ["<c-w>|"] = { "edit_vsplit", mode = { "i", "n" } },
-                        ["<c-w>-"] = { "edit_split", mode = { "i", "n" } },
-                    },
-                },
-            },
-        },
+        picker = { enabled = true },
         quickfile = { enabled = true },
         statuscolumn = {
             enabled = true,
