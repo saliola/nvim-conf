@@ -166,6 +166,54 @@ set_keymap({ desc = "fzf builtin commands for fzf",
     command = "<cmd>lua require('fzf-lua').builtin()<cr>",
 })
 
+-- snacks.picker
+local picker = require('snacks').picker
+set_keymap({ desc = "pick buffer",
+    keys = "<leader>pb",
+    command = function() picker.buffers() end,
+})
+set_keymap({ desc = "pick config file",
+    keys = "<leader>pc",
+    command = function() picker.files({ cwd = vim.fn.stdpath('config') }) end,
+})
+set_keymap({ desc = "pick file",
+    keys = "<leader>pf",
+    command = function() picker.files() end,
+})
+set_keymap({ desc = "pick git file",
+    keys = "<leader>pg",
+    command = function()
+        local gitroot = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+        if gitroot:find("^fatal: ") then
+            gitroot = vim.fn.expand("%:p:h")
+        end
+        picker.files({ cwd = gitroot })
+    end,
+})
+set_keymap({ desc = "pick help tags",
+    keys = "<leader>ph",
+    command = function() picker.help() end,
+})
+set_keymap({ desc = "pick recent file",
+    keys = "<leader>pr",
+    command = function() picker.recent() end,
+})
+set_keymap({ desc = "pick picker source",
+    keys = "<leader>ps",
+    command = function() picker() end,
+})
+
+-- search
+set_keymap({ desc = "search with grep",
+    keys = "<leader>sg",
+    command = function() picker.grep() end,
+})
+set_keymap({ desc = "search word or visual selection",
+    keys = "<leader>sw",
+    mode = { "n", "v" },
+    command = function() picker.grep_word() end,
+})
+
 -- misc
 set_keymap({ desc = "Join paragraph",
     keys = "<leader>J",
@@ -212,18 +260,14 @@ set_keymap({ desc = "Yank visual selection to clipboard",
     mode = "v",
     command = '"+y',
 })
-set_keymap({ desc = "Put yanked text in line below",
-    keys = "<leader>p",
+set_keymap({ desc = "Put yanked text (in line below)",
+    keys = "<leader>Y",
     command = "<Plug>(YankyPutAfterLinewise)",
-    expr = true,
-})
-set_keymap({ desc = "Put yanked text in line above",
-    keys = "<leader>P",
-    command = "<Plug>(YankyPutBeforeLinewise)",
     expr = true,
 })
 
 --[[ OTHER MAPPINGS ]]--
+
 set_keymap({ desc = "Move to beginning of line in command mode",
     keys = "<C-A>",
     mode = "c",
