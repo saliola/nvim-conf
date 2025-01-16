@@ -90,7 +90,7 @@ set_keymap({ desc = "Previous todo comment",
 
 -- navigate the quickfix list (these mappings are coming to nvim-0.11)
 set_keymap({ desc = "Next quickfix entry",
-    keys = "]M",
+    keys = "]q",
     command = ":try|cnext|catch|cfirst|endtry <CR>",
 })
 set_keymap({ desc = "Previous quickfix entry",
