@@ -190,10 +190,6 @@ set_keymap({ desc = "pick git file",
         picker.files({ cwd = gitroot })
     end,
 })
-set_keymap({ desc = "pick help tags",
-    keys = "<leader>ph",
-    command = function() picker.help() end,
-})
 set_keymap({ desc = "pick recent file",
     keys = "<leader>pr",
     command = function() picker.recent() end,
@@ -204,6 +200,10 @@ set_keymap({ desc = "pick picker source",
 })
 
 -- search
+set_keymap({ desc = "search help",
+    keys = "<leader>sh",
+    command = function() picker.help() end,
+})
 set_keymap({ desc = "search with grep",
     keys = "<leader>sg",
     command = function() picker.grep() end,
