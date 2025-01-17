@@ -24,15 +24,6 @@ query.set("python", "folds", [[
 -- disable Lua folding
 -- query.set("lua", "folds", [[]])
 
--- settings for LaTeX files
-vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-    pattern = {"*.tex"},
-    callback = function()
-        vim.opt.foldlevel = 99
-        vim.opt.foldlevelstart = 99
-    end
-})
-
 -- skip over closed folds with { and }
 vim.cmd([[nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"]])
 vim.cmd([[nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"]])
