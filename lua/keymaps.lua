@@ -284,6 +284,7 @@ set_keymap({ desc = "Split window vertically",
 set_keymap({ desc = "Clear search",
     keys = "<Esc>",
     command = "<Esc>:nohlsearch<CR><Esc>",
+    silent = true,
 })
 set_keymap({ desc = "Redo",
     keys = "U",
