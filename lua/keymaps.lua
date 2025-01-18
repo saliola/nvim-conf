@@ -78,14 +78,24 @@ set_keymap({ desc = "Move line up",
     command = ":m .-2<CR>==",
 })
 
--- navigate TODO comments
-set_keymap({ desc = "Next todo comment",
+-- navigate highlights
+set_keymap({ desc = "Next highlight",
+    keys = "]h",
+    command = "<CMD>Hi><CR>",
+})
+set_keymap({ desc = "Previous highlight",
+    keys = "[h",
+    command = "<CMD>Hi<<CR>",
+})
+
+-- navigate tabs
+set_keymap({ desc = "Next tab",
     keys = "]t",
-    command = "<cmd>lua require('todo-comments').jump_next()<cr>",
+    command = "gt",
 })
 set_keymap({ desc = "Previous todo comment",
     keys = "[t",
-    command = "<cmd>lua require('todo-comments').jump_prev()<cr>",
+    command = "gT",
 })
 
 -- navigate the quickfix list (these mappings are coming to nvim-0.11)
