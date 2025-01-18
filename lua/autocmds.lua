@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile', 'VimEnter'}, {
     callback = function()
         vim.opt.foldlevel = 99
         vim.opt.foldlevelstart = 99
-        vim.cmd('syntax off')
+        -- vim.cmd('syntax off')
     end
 })
 
