@@ -6,8 +6,16 @@ return {
             miniclue.setup({
                 triggers = {
                     -- Leader triggers
-                    { mode = 'n', keys = '<Leader>' },
-                    { mode = 'x', keys = '<Leader>' },
+                    { mode = 'n', keys = '<leader>' },
+                    { mode = 'x', keys = '<leader>' },
+                    { mode = 'n', keys = '<localleader>' },
+                    { mode = 'x', keys = '<localleader>' },
+
+                    -- bracket keys
+                    { mode = 'n', keys = ']' },
+                    { mode = 'n', keys = '[' },
+                    { mode = 'x', keys = ']' },
+                    { mode = 'x', keys = '[' },
 
                     -- Built-in completion
                     { mode = 'i', keys = '<C-x>' },
