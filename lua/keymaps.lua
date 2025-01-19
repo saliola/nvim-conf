@@ -232,7 +232,38 @@ set_keymap({ desc = "search word or visual selection",
     mode = { "n", "v" },
     command = function() Snacks.picker.grep_word() end,
 })
+
+-- highlighting words
+set_keymap({ desc = "clear all highlighted words",
+    keys = "<leader>hc",
+    command = "<cmd>Hi clear<cr>",
 })
+set_keymap({ desc = "highlight word under cursor",
+    keys = "<leader>hh",
+    mode = { "n", "v" },
+    command = function()
+        local mode = vim.api.nvim_get_mode().mode
+        if mode == 'n' then
+            vim.cmd('Hi+')
+        elseif mode == 'v' then
+            vim.cmd('Hi+ ' .. get_visual_selection_text())
+        end
+    end
+})
+for i = 1, 9 do
+    set_keymap({ desc = "highlight word under cursor with color" .. i,
+        keys = "<leader>h" .. i,
+        mode = { "n", "v" },
+        command = function()
+            local mode = vim.api.nvim_get_mode().mode
+            if mode == 'n' then
+                vim.cmd(i .. 'Hi+')
+            elseif mode == 'v' then
+                vim.cmd(i .. 'Hi+ ' .. get_visual_selection_text())
+            end
+        end,
+    })
+end
 
 -- misc
 set_keymap({ desc = "Join paragraph",
