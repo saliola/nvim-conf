@@ -1,3 +1,5 @@
+local Snacks = require('snacks')
+
 local set_keymap = function(opts)
     vim.keymap.set(opts.mode or "n",
         opts.keys,
@@ -10,6 +12,10 @@ local set_keymap = function(opts)
             expr = opts.expr,
         }
     )
+end
+
+local get_visual_selection_text = function()
+    return Snacks.picker.util.visual().text
 end
 
 --[[ BRACKET MAPPINGS ]]--
@@ -176,19 +182,18 @@ set_keymap({ desc = "fzf builtin commands for fzf",
     command = "<cmd>lua require('fzf-lua').builtin()<cr>",
 })
 
--- snacks.picker
-local picker = require('snacks').picker
+-- Snacks.picker
 set_keymap({ desc = "pick buffer",
     keys = "<leader>pb",
-    command = function() picker.buffers() end,
+    command = function() Snacks.picker.buffers() end,
 })
 set_keymap({ desc = "pick config file",
     keys = "<leader>pc",
-    command = function() picker.files({ cwd = vim.fn.stdpath('config') }) end,
+    command = function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end,
 })
 set_keymap({ desc = "pick file",
     keys = "<leader>pf",
-    command = function() picker.files() end,
+    command = function() Snacks.picker.files() end,
 })
 set_keymap({ desc = "pick git file",
     keys = "<leader>pg",
@@ -197,35 +202,36 @@ set_keymap({ desc = "pick git file",
         if gitroot:find("^fatal: ") then
             gitroot = vim.fn.expand("%:p:h")
         end
-        picker.files({ cwd = gitroot })
+        Snacks.picker.files({ cwd = gitroot })
     end,
 })
-set_keymap({ desc = "pick git file",
+set_keymap({ desc = "pick keymaps",
     keys = "<leader>pk",
-    command = function() picker.keymaps() end,
+    command = function() Snacks.picker.keymaps() end,
 })
 set_keymap({ desc = "pick recent file",
     keys = "<leader>pr",
-    command = function() picker.recent() end,
+    command = function() Snacks.picker.recent() end,
 })
-set_keymap({ desc = "pick picker source",
+set_keymap({ desc = "pick Snacks.picker source",
     keys = "<leader>ps",
-    command = function() picker() end,
+    command = function() Snacks.picker() end,
 })
 
 -- search
 set_keymap({ desc = "search help",
     keys = "<leader>sh",
-    command = function() picker.help() end,
+    command = function() Snacks.picker.help() end,
 })
-set_keymap({ desc = "search with grep",
-    keys = "<leader>sg",
-    command = function() picker.grep() end,
+set_keymap({ desc = "search files (with grep)",
+    keys = "<leader>sf",
+    command = function() Snacks.picker.grep() end,
 })
 set_keymap({ desc = "search word or visual selection",
     keys = "<leader>sw",
     mode = { "n", "v" },
-    command = function() picker.grep_word() end,
+    command = function() Snacks.picker.grep_word() end,
+})
 })
 
 -- misc
