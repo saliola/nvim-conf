@@ -200,6 +200,10 @@ set_keymap({ desc = "pick git file",
         picker.files({ cwd = gitroot })
     end,
 })
+set_keymap({ desc = "pick git file",
+    keys = "<leader>pk",
+    command = function() picker.keymaps() end,
+})
 set_keymap({ desc = "pick recent file",
     keys = "<leader>pr",
     command = function() picker.recent() end,
