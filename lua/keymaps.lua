@@ -320,8 +320,8 @@ set_keymap({ desc = "Select recently changed/pasted text",
     expr = true,
 })
 
--- yazi
-set_keymap({ desc = "Open yazi file browser",
+-- Oil
+set_keymap({ desc = "Open parent directory",
     keys = "-",
-    command = "<cmd>Yazi<cr>",
+    command = "<cmd>Oil --float<cr>",
 })
