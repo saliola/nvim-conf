@@ -22,7 +22,6 @@ end
 
 -- navigate marks: use the builtin ]' / [' and ]` / [`
 
--- LSP highlights
 set_keymap({ desc = "Next LSP highlight",
     keys = "]]",
     command = "<cmd>lua require('snacks').words.jump(vim.v.count1, true)<cr>",
@@ -31,8 +30,6 @@ set_keymap({ desc = "Prev LSP highlight",
     keys = "[[",
     command = "<cmd>lua require('snacks').words.jump(-vim.v.count1, true)<cr>",
 })
-
--- navigate buffers
 set_keymap({ desc = "Next buffer",
     keys = "]b",
     command = ":bnext<CR>",
@@ -41,8 +38,6 @@ set_keymap({ desc = "Previous buffer",
     keys = "[b",
     command = ":bfirst<CR>",
 })
-
--- navigate changes / hunks
 set_keymap({ desc = "Next change (hunk)",
     keys = "]c",
     command = function()
@@ -63,8 +58,6 @@ set_keymap({ desc = "Previous change (hunk)",
         end
     end,
 })
-
--- navigate diagnostics
 set_keymap({ desc = "Next diagnostic",
     keys = "]d",
     command = "<cmd>lua vim.diagnostic.goto_next({ wrap = true })<cr>",
@@ -73,8 +66,6 @@ set_keymap({ desc = "Previous diagnostic",
     keys = "[d",
     command = "<cmd>lua vim.diagnostic.goto_prev({ wrap = true })<cr>",
 })
-
--- move line up/down respecting indent (inspired by ]e and [e in vim-unimpaired)
 set_keymap({ desc = "Move line down",
     keys = "]e",
     command = ":m .+1<CR>==",
@@ -83,8 +74,6 @@ set_keymap({ desc = "Move line up",
     keys = "[e",
     command = ":m .-2<CR>==",
 })
-
--- navigate highlights
 set_keymap({ desc = "Next highlight",
     keys = "]h",
     command = "<CMD>Hi><CR>",
@@ -93,8 +82,6 @@ set_keymap({ desc = "Previous highlight",
     keys = "[h",
     command = "<CMD>Hi<<CR>",
 })
-
--- navigate tabs
 set_keymap({ desc = "Next tab",
     keys = "]t",
     command = "gt",
@@ -103,8 +90,6 @@ set_keymap({ desc = "Previous todo comment",
     keys = "[t",
     command = "gT",
 })
-
--- navigate the quickfix list (these mappings are coming to nvim-0.11)
 set_keymap({ desc = "Next quickfix entry",
     keys = "]q",
     command = ":try|cnext|catch|cfirst|endtry <CR>",
@@ -120,6 +105,14 @@ set_keymap({ desc = "First quickfix entry",
 set_keymap({ desc = "Last quickfix entry",
     keys = "[Q",
     command = ":clast<CR>",
+})
+set_keymap({ desc = "Next fold",
+    keys = "]z",
+    command = "zj",
+})
+set_keymap({ desc = "Previous fold",
+    keys = "[z",
+    command = "zk",
 })
 
 --[[ LEADER MAPPINGS ]]--
@@ -140,7 +133,6 @@ set_keymap({ desc = "Comment selection",
     remap = true,
 })
 
--- fzf-lua
 set_keymap({ desc = "fzf buffers",
     keys = "<leader>fb",
     command = "<cmd>lua require('fzf-lua').buffers()<cr>",
@@ -182,7 +174,6 @@ set_keymap({ desc = "fzf builtin commands for fzf",
     command = "<cmd>lua require('fzf-lua').builtin()<cr>",
 })
 
--- Snacks.picker
 set_keymap({ desc = "pick buffer",
     keys = "<leader>pb",
     command = function() Snacks.picker.buffers() end,
@@ -218,7 +209,6 @@ set_keymap({ desc = "pick Snacks.picker source",
     command = function() Snacks.picker() end,
 })
 
--- search
 set_keymap({ desc = "search help",
     keys = "<leader>sh",
     command = function() Snacks.picker.help() end,
@@ -233,7 +223,6 @@ set_keymap({ desc = "search word or visual selection",
     command = function() Snacks.picker.grep_word() end,
 })
 
--- highlighting words
 set_keymap({ desc = "clear all highlighted words",
     keys = "<leader>hc",
     command = "<cmd>Hi clear<cr>",
@@ -265,7 +254,6 @@ for i = 1, 9 do
     })
 end
 
--- misc
 set_keymap({ desc = "Join paragraph",
     keys = "<leader>J",
     command = "mzvipJ`z",
@@ -281,7 +269,6 @@ set_keymap({ desc = "Focus current line",
     -- Steve Losh
 })
 
--- notifications
 set_keymap({ desc = "Notification history",
     keys = "<leader>nh",
     command = "<cmd>lua require('snacks').notifier.show_history()<CR>",
@@ -291,7 +278,6 @@ set_keymap({ desc = "Dismiss notification",
     command = "<cmd>lua require('snacks').notifier.hide()<CR>",
 })
 
--- lazygit
 set_keymap({ desc = "Lazygit (cwd)",
     keys = "<leader>lg",
     command = "<cmd>lua require('snacks').lazygit()<CR>",
@@ -301,7 +287,6 @@ set_keymap({ desc = "Lazygit Log",
     command = "<cmd>lua require('snacks').lazygit.log()<CR>",
 })
 
--- yank / copy / paste
 set_keymap({ desc = "Yank line to clipboard",
     keys = "<leader>y",
     command = '"+yy',
@@ -356,8 +341,6 @@ set_keymap({ desc = "Select recently changed/pasted text",
     command = "'`[' . getregtype()[0] . '`]'",
     expr = true,
 })
-
--- Oil
 set_keymap({ desc = "Open parent directory",
     keys = "-",
     command = "<cmd>Oil --float<cr>",
