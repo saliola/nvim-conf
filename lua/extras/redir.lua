@@ -235,7 +235,7 @@ vim.api.nvim_create_user_command("R", redir, {
   bang = true,
 })
 
-vim.api.nvim_create_user_command("Mes", function()
+vim.api.nvim_create_user_command("Messages", function()
   vim.cmd("Redir messages")
 end, { bar = true })
 vim.api.nvim_create_user_command("M", function()
