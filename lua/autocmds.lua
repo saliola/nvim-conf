@@ -9,16 +9,6 @@ vim.api.nvim_create_autocmd({'BufReadPost'}, {
     end
 })
 
-vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile', 'VimEnter'}, {
-    desc = "Set fold / syntax options for latex files",
-    pattern = '*.tex',
-    callback = function()
-        vim.opt.foldlevel = 99
-        vim.opt.foldlevelstart = 99
-        -- vim.cmd('syntax off')
-    end
-})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight yanked text",
     callback = function()

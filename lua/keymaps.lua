@@ -278,6 +278,16 @@ set_keymap({ desc = "Put yanked text (in line below)",
 
 --[[ OTHER MAPPINGS ]]--
 
+set_keymap({ desc = "Skip over next closed fold",
+    keys = "}",
+    command = [[foldclosed(search('^$', 'Wn')) == -1 ? "}" : "j}"]],
+    expr = true,
+})
+set_keymap({ desc = "Skip over prev closed fold",
+    keys = "{",
+    command = [[foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "k{"]],
+    expr = true,
+})
 set_keymap({ desc = "Move to beginning of line in command mode",
     keys = "<C-A>",
     mode = "c",

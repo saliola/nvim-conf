@@ -20,10 +20,3 @@ query.set("python", "folds", [[
       (import_from_statement)
     ]+ @fold
 ]])
-
--- disable Lua folding
--- query.set("lua", "folds", [[]])
-
--- skip over closed folds with { and }
-vim.cmd([[nnoremap <expr> } foldclosed(search('^$', 'Wn')) == -1 ? "}" : "}j}"]])
-vim.cmd([[nnoremap <expr> { foldclosed(search('^$', 'Wnb')) == -1 ? "{" : "{k{"]])
