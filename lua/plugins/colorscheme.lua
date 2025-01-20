@@ -10,24 +10,20 @@ return {
         event = { "VimEnter" },
         lazy = true,
         config = function()
+            require('kanagawa').setup({
+                overrides = function(colors)
+                    local palette = colors.palette
+                    return {
+                        ["@markup.heading.1"] = { fg = palette.dragonRed },
+                        ["@markup.heading.2"] = { fg = palette.dragonOrange2 },
+                        ["@markup.heading.3"] = { fg = palette.dragonYellow },
+                        ["@markup.heading.4"] = { fg = palette.dragonGreen },
+                        ["@markup.heading.5"] = { fg = palette.dragonTeal },
+                        ["@markup.heading.6"] = { fg = palette.dragonAsh },
+                    }
+                end,
+            })
             vim.cmd.colorscheme("kanagawa-dragon")
-        end,
-    },
-
-    {
-        "KeitaNakamura/neodark.vim",
-        lazy = true,
-    },
-
-    {
-        "zenbones-theme/zenbones.nvim",
-        dependencies = "rktjmp/lush.nvim",
-        opts = {},
-        config = function()
-            -- vim.g.zenbones_darken_comments = 45
-            -- vim.cmd.colorscheme("zenbones")
-            -- vim.cmd.colorscheme("neobones")
-            -- vim.cmd.colorscheme("kanagawabones")
         end,
     },
 }
