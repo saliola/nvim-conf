@@ -16,6 +16,7 @@ return {
                     "basedpyright",
                     "ruff",
                     "texlab",
+                    "cssls",
                 },
             })
         end,
@@ -58,6 +59,10 @@ return {
             })
 
             lspconfig.lua_ls.setup({
+                capabilities = capabilities
+            })
+
+            lspconfig.cssls.setup({
                 capabilities = capabilities
             })
 
