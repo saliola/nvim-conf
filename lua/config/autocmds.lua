@@ -15,3 +15,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank({higroup = "IncSearch", timeout = 200})
     end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    desc = 'Move help window to the far right',
+    pattern = 'help',
+    callback = function()
+        vim.cmd('wincmd L')
+    end,
+})

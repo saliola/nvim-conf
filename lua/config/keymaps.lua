@@ -211,7 +211,15 @@ set_keymap({ desc = "pick Snacks.picker source",
 
 set_keymap({ desc = "search help",
     keys = "<leader>sh",
-    command = function() Snacks.picker.help() end,
+    mode = { "n", "v" },
+    command = function()
+        local mode = vim.api.nvim_get_mode().mode
+        if mode == 'n' then
+            Snacks.picker.help()
+        elseif mode == 'v' then
+            Snacks.picker.help({ pattern=get_visual_selection_text() })
+        end
+    end
 })
 set_keymap({ desc = "search files (with grep)",
     keys = "<leader>sf",
@@ -345,3 +353,12 @@ set_keymap({ desc = "Open parent directory",
     keys = "-",
     command = "<cmd>Oil --float<cr>",
 })
+
+set_keymap({ desc = "go to help",
+    keys = "gh",
+    command = function()
+        local word_under_cursor = vim.fn.expand('<cword>')
+        vim.cmd('help ' .. word_under_cursor)
+    end
+})
+
