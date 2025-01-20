@@ -9,7 +9,7 @@ local makeprgs = {
 }
 
 -- Create the directory for the latex output files
-vim.fn.mkdir(tex_outputdir, "p", 0700)
+vim.fn.mkdir(tex_outputdir, "p", "0700")
 
 -- Set `makeprg` ; defaults to `pdflatex`
 vim.api.nvim_set_option_value('makeprg', vim.fn.expand(makeprgs['pdflatex']), { scope = 'local' } )
