@@ -49,17 +49,6 @@ return {
                     'snippet_backward',
                     'fallback'
                 },
-                cmdline = {
-                    preset = 'default',
-                    ["<Tab>"] = {
-                        'select_next',
-                        'fallback'
-                    },
-                    ["<S-Tab>"] = {
-                        'select_prev',
-                        'fallback'
-                    },
-                },
             },
             completion = {
                 accept = {
