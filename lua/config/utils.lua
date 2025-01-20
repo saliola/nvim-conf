@@ -30,3 +30,14 @@ vim.cmd([[
         diffthis
     endfunction
 ]])
+
+
+local M = {}
+
+-- prints the treesitter highlight group of the object under the cursor
+M.hlgroup = function()
+    local result = vim.treesitter.get_captures_at_cursor(0)
+    vim.print(vim.inspect(result))
+end
+
+return M
