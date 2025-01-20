@@ -204,9 +204,13 @@ set_keymap({ desc = "pick recent file",
     keys = "<leader>pr",
     command = function() Snacks.picker.recent() end,
 })
-set_keymap({ desc = "pick Snacks.picker source",
+set_keymap({ desc = "pick source",
     keys = "<leader>ps",
     command = function() Snacks.picker() end,
+})
+set_keymap({ desc = "pick undo",
+    keys = "<leader>pu",
+    command = function() Snacks.picker.undo() end,
 })
 
 set_keymap({ desc = "search help",
