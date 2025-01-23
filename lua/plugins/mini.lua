@@ -36,6 +36,10 @@ return {
                     { mode = 'i', keys = '<C-r>' },
                     { mode = 'c', keys = '<C-r>' },
 
+                    -- `s` key (to show mini.surround keymaps)
+                    { mode = 'n', keys = 's' },
+                    { mode = 'x', keys = 's' },
+
                     -- Window commands
                     { mode = 'n', keys = '<C-w>' },
 
@@ -78,6 +82,8 @@ return {
                     end
                 }
             })
+
+           require("mini.surround").setup()
         end,
     },
 }
