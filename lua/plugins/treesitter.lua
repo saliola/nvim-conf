@@ -22,6 +22,7 @@ return {
                     "python",
                     "vim",
                     "vimdoc",
+                    "yaml",
                 },
                 sync_install = false,
             })
