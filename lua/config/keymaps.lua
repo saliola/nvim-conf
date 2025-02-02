@@ -204,9 +204,13 @@ set_keymap({ desc = "pick recent file",
     keys = "<leader>pr",
     command = function() Snacks.picker.recent() end,
 })
-set_keymap({ desc = "pick source",
-    keys = "<leader>ps",
+set_keymap({ desc = "pick picker",
+    keys = "<leader>pp",
     command = function() Snacks.picker() end,
+})
+set_keymap({ desc = "pick spelling",
+    keys = "<leader>ps",
+    command = function() Snacks.picker.spelling() end,
 })
 set_keymap({ desc = "pick undo",
     keys = "<leader>pu",
@@ -357,7 +361,6 @@ set_keymap({ desc = "Open parent directory",
     keys = "-",
     command = "<cmd>Oil --float<cr>",
 })
-
 set_keymap({ desc = "go to help",
     keys = "gh",
     command = function()
@@ -366,3 +369,32 @@ set_keymap({ desc = "go to help",
     end
 })
 
+--[[ SPELLING ]]--
+
+set_keymap({ desc = "toggle spell language",
+    keys = "<leader>tsl",
+    command = function()
+        local spelllang = vim.bo.spelllang
+        if spelllang == 'en' then
+            vim.bo.spelllang = 'fr'
+        elseif spelllang == 'fr' then
+            vim.bo.spelllang = 'en,fr'
+        elseif spelllang == 'en,fr' then
+            vim.bo.spelllang = 'en'
+        end
+        Snacks.notify('config(vim): set spelllang=' .. vim.bo.spelllang)
+    end
+})
+set_keymap({ desc = "toggle spell check",
+    keys = "<leader>tsc",
+    command = function()
+        local spell = vim.o.spell
+        if spell then
+            vim.o.spell = false
+            Snacks.notify('config(vim): spell check disabled')
+        else
+            vim.o.spell = true
+            Snacks.notify('config(vim): spell check enabled')
+        end
+    end
+})
