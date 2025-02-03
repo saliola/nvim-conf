@@ -30,13 +30,34 @@ return {
         opts = {
             strategies = {
                 chat = {
-                    adapter = 'deepseek',
-                },
-                inline = {
-                    adapter = 'deepseek',
+                    adapter = 'ollama',
+                    keymaps = {
+                        send = {
+                            modes = { n = "<C-s>", i = "<C-s>" },
+                        },
+                    },
                 },
             },
         },
+        config = function()
+            require('codecompanion').setup({
+                adapters = {
+                    llama3 = function()
+                        return require('codecompanion.adapters').extend('ollama', {
+                            name = 'llama3',
+                            schema = {
+                                model = {
+                                    default = 'codellama:latest',
+                                },
+                                num_ctx = {
+                                    default = 2048,
+                                },
+                            },
+                        })
+                    end
+                },
+            })
+        end
     },
 
     {
@@ -149,9 +170,6 @@ return {
                     name = "snippets",
                     module = "blink.cmp.sources.snippets",
                 },
-            },
-            per_filetype = {
-                codecompanion = { 'codecompanion' },
             },
         },
         opts_extend = { "sources.default" },
