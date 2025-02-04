@@ -5,7 +5,6 @@ return {
         dependencies = {
             { 'williamboman/mason.nvim', },
             { 'williamboman/mason-lspconfig.nvim', },
-            { 'WhoIsSethDaniel/mason-tool-installer.nvim', },
             { 'saghen/blink.cmp', },
             {
                 'folke/lazydev.nvim',
@@ -22,45 +21,44 @@ return {
             -- configs for the language servers
             local server_configs = {
                 cssls = {},
-                isort = {},
                 lua_ls = {},
 
                 bashls = { filetypes = { 'bash' } },
                 html = { filetypes = { 'html' } },
 
-                basedpyright = {
+                pyright = {
                     filetypes = { 'python' },
                     settings = {
                         python = {
                             pythonPath = os.getenv('HOME') .. '/Applications/sage/venv/bin/python3',
                             analysis = {
-                                typeCheckingMode = 'off',
-                                diagnosticMode = "openFilesOnly",
+                                typeCheckingMode = 'basic',
+                                diagnosticSeverityOverrides = {
+                                    reportCallIssue = 'none',
+                                },
                             },
                         },
                     },
                 },
 
-                -- ruff = {
-                --     filetypes = { 'python' },
-                --     init_options = {
-                --         settings = {
-                --             -- extra CLI arguments
-                --             -- https://docs.astral.sh/ruff/configuration/#command-line-interface
-                --             -- https://docs.astral.sh/ruff/rules/
-                --             args = {
-                --                 '--preview',
-                --                 '--select', 'E,F',
-                --                 "--ignore", table.concat({
-                --                     "E501", -- line-too-long
-                --                     "E702", -- multiple-statements-on-one-line-semicolon
-                --                     "E731", -- lambda-assignment
-                --                     "F401", -- unused-import  (note: should be handled by pyright as 'hint')
-                --                 }, ','),
-                --             },
-                --         },
-                --     },
-                -- },
+                ruff = {
+                    filetypes = { 'python' },
+                    init_options = {
+                        settings = {
+                            -- extra CLI arguments
+                            -- https://docs.astral.sh/ruff/configuration/#command-line-interface
+                            -- https://docs.astral.sh/ruff/rules/
+                            args = {
+                                "--ignore", table.concat({
+                                    "E501", -- line-too-long
+                                    "E702", -- multiple-statements-on-one-line-semicolon
+                                    "E731", -- lambda-assignment
+                                    "F401", -- unused-import  (note: should be handled by pyright as 'hint')
+                                }, ','),
+                            },
+                        },
+                    },
+                },
 
                 texlab = {
                     flags = {
@@ -77,22 +75,14 @@ return {
                 },
             }
 
-            -- extra tools to be installed by mason-tool-installer
-            local tools = {
-                'black',
-                'isort',
-            }
-
-            -- Ensure the servers and tools are installed
+            -- install and configure servers
             require('mason').setup()
 
             local ensure_installed = vim.tbl_keys(server_configs)
-            vim.list_extend(ensure_installed, tools)
-            require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
-
             local capabilities = require('blink.cmp').get_lsp_capabilities()
-            local lspconfig = require('lspconfig')
             require('mason-lspconfig').setup({
+                ensure_installed = ensure_installed,
+                automatic_installation = true,
                 handlers = {
                     function(server_name)
                         local server = server_configs[server_name] or {}
