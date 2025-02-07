@@ -45,16 +45,15 @@ return {
                     filetypes = { 'python' },
                     init_options = {
                         settings = {
-                            -- extra CLI arguments
-                            -- https://docs.astral.sh/ruff/configuration/#command-line-interface
-                            -- https://docs.astral.sh/ruff/rules/
-                            args = {
-                                "--ignore", table.concat({
+                            lint = {
+                                preview = true,
+                                select = { "E", "F" },
+                                ignore = {
                                     "E501", -- line-too-long
                                     "E702", -- multiple-statements-on-one-line-semicolon
                                     "E731", -- lambda-assignment
                                     "F401", -- unused-import  (note: should be handled by pyright as 'hint')
-                                }, ','),
+                                },
                             },
                         },
                     },
