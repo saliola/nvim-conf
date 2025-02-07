@@ -17,11 +17,11 @@ return {
                 {
                     pane = 1,
                     section = "terminal",
-                    cmd = "colorscript -e crunchbang-mini",
-                    width = 50,
-                    height = 5,
+                    cmd = "colorscript -e pacman-ghosts",
+                    width = 54,
+                    height = 7,
                     padding = 0,
-                    indent = 6,
+                    indent = 4,
                 },
                 {
                     section = "startup",
@@ -51,7 +51,7 @@ return {
                     section = "terminal",
                     icon = " ",
                     enabled = function()
-                        return Snacks.git.get_root() ~= nil
+                        return require('snacks').git.get_root() ~= nil
                     end,
                     cmd = "hub status --short --branch --renames",
                     height = 5,
