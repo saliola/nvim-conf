@@ -20,6 +20,7 @@ return {
 
             -- configs for the language servers
             local server_configs = {
+                clangd = {},
                 cssls = {},
                 lua_ls = {},
 
