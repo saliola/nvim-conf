@@ -1,6 +1,6 @@
 --[ utility functions ]--
 
-function normal_mode()    
+function normal_mode()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), 'x', true)
 end
 
