@@ -15,13 +15,6 @@ return {
     },
 
     {
-        'David-Kunz/gen.nvim',
-        opts = {
-            model = 'llama3.2',
-        },
-    },
-
-    {
         'olimorris/codecompanion.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim',
@@ -30,10 +23,9 @@ return {
         opts = {
             strategies = {
                 chat = {
-                    adapter = 'ollama',
                     keymaps = {
                         send = {
-                            modes = { n = "<C-s>", i = "<C-s>" },
+                            modes = { n = "<S-CR>", i = "<S-CR>" },
                         },
                     },
                 },
@@ -47,7 +39,7 @@ return {
                             name = 'llama3',
                             schema = {
                                 model = {
-                                    default = 'codellama:latest',
+                                    default = 'llama3.2:latest',
                                 },
                                 num_ctx = {
                                     default = 2048,
@@ -136,6 +128,9 @@ return {
                             },
                         },
                     },
+                    -- auto_show = function(ctx)
+                    --     return ctx.mode ~= 'cmdline'
+                    -- end,
                 },
                 documentation = {
                     auto_show = false,
