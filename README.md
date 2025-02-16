@@ -44,3 +44,16 @@ Some very nice references:
 - `]q` -- Next **q**uickfix entry
 - `]s` -- Next mis**s**pelled word
 - `]t` -- Next **t**odo comment
+
+## tips and tricks
+
+### Snacks.picker: grep only in specific files
+
+To grep for "pattern" in tex files, say, use:
+```
+pattern -- -g=*.tex
+```
+or to search in multiple file extensions:
+```
+pattern -- -g={*.tex,*.log}
+```
