@@ -196,6 +196,10 @@ set_keymap({ desc = "pick git file",
         Snacks.picker.files({ cwd = gitroot })
     end,
 })
+set_keymap({ desc = "pick icon",
+    keys = "<leader>pi",
+    command = function() Snacks.picker.icons() end,
+})
 set_keymap({ desc = "pick keymaps",
     keys = "<leader>pk",
     command = function() Snacks.picker.keymaps() end,
@@ -237,6 +241,11 @@ set_keymap({ desc = "search word or visual selection",
     keys = "<leader>sw",
     mode = { "n", "v" },
     command = function() Snacks.picker.grep_word() end,
+})
+
+set_keymap({ desc = "initiate Snacks command",
+    keys = "<leader>S",
+    command = ":lua Snacks.",
 })
 
 set_keymap({ desc = "clear all highlighted words",
