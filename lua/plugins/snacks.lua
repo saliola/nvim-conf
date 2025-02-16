@@ -72,6 +72,9 @@ return {
                 },
             },
         },
+        gitbrowse = {
+            enabled = true
+        },
         lazygit = {
             enabled = true,
         },
